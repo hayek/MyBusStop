@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- busbus://setup?id=… opens a saved stop's board: where a widget sends a tap (WidgetDeepLink). -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.hayek.BusBus</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>busbus</string>
+			</array>
+		</dict>
+	</array>
+	<key>BusBusAPIKeys</key>
+	<dict>
+		<key>MTA_BUSTIME_KEY</key>
+		<string>$(MTA_BUSTIME_KEY)</string>
+		<key>OBA_PUGETSOUND_KEY</key>
+		<string>$(OBA_PUGETSOUND_KEY)</string>
+		<key>OBA_TAMPA_KEY</key>
+		<string>$(OBA_TAMPA_KEY)</string>
+		<key>MOBILITEIT_LU_KEY</key>
+		<string>$(MOBILITEIT_LU_KEY)</string>
+		<key>VBB_KEY</key>
+		<string>$(VBB_KEY)</string>
+	</dict>
+	<!-- The in-app feedback token, from the gitignored Config/Feedback.xcconfig (Feedback.swift). -->
+	<key>LoveLetterGitHubToken</key>
+	<string>$(LOVELETTER_GITHUB_TOKEN)</string>
+</dict>
+</plist>

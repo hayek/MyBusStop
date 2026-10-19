@@ -1,0 +1,11 @@
+// Settings for the BusBus app target's Debug configuration only. Release (Config/Release.xcconfig)
+// carries no transit API keys at all (see APIKeys.swift, KeyedEndpoint), only the feedback token.
+//
+// Local API keys live in Config/Secrets.xcconfig, which is gitignored and never committed. The `?`
+// makes the include optional, so a fresh clone without it still builds: the keys are then empty and
+// the keyed providers are unavailable, as in Release.
+// To fill it: `scripts/fill-secrets.sh` (from the Keychain), or copy Secrets.example.xcconfig.
+#include? "Secrets.xcconfig"
+
+// The in-app feedback token, which Release carries too (see Config/Release.xcconfig).
+#include? "Feedback.xcconfig"

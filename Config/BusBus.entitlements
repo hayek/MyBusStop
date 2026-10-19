@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Shared with the widget (AppGroup.swift): the history it offers and the snapshots it draws. -->
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.com.hayek.BusBus</string>
+	</array>
+	<!-- The saved stops, shared with the rider's other devices (CloudHistory.swift). -->
+	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
+	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
+</dict>
+</plist>

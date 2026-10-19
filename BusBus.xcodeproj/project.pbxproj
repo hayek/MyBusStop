@@ -1,0 +1,2083 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 90;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		292D629830644FE700210F18 /* Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 292D629730644FE700210F18 /* Icon.icon */; };
+		AA00000000000000000000B1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AA00000000000000000000A1 /* FirebaseAnalytics */; };
+		AA00000000000000000000B2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = AA00000000000000000000A2 /* FirebaseCrashlytics */; };
+		AA00000000000000000000B3 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = AA00000000000000000000A3 /* FirebaseRemoteConfig */; };
+		AA00000000000000000000B4 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = AA00000000000000000000A4 /* FirebaseAppCheck */; };
+		AA00000000000000000000ED /* BusBusWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000E1 /* BusBusWidget.appex */; platformFilters = (ios, macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA00000000000000000000F9 /* BusBusWatchWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000101 /* BusBusWatchWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA00000000000000000000FF /* Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 292D629730644FE700210F18 /* Icon.icon */; };
+		AA0000000000000000000111 /* BusBusWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = AA00000000000000000000F1 /* BusBusWatch.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA0000000000000000000203 /* LoveLetterCore in Frameworks */ = {isa = PBXBuildFile; productRef = AA0000000000000000000201 /* LoveLetterCore */; };
+		AA0000000000000000000204 /* LoveLetterUI in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, macos, ); productRef = AA0000000000000000000202 /* LoveLetterUI */; };
+		AA0000000000000000000212 /* HelpView in Frameworks */ = {isa = PBXBuildFile; platformFilters = (ios, macos, ); productRef = AA0000000000000000000211 /* HelpView */; };
+		AA000000000000000000030B /* BusBusTopShelf.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000301 /* BusBusTopShelf.appex */; platformFilters = (tvos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA0000000000000000000046 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000040;
+			remoteInfo = BusBus;
+		};
+		AA0000000000000000000048 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000040;
+			remoteInfo = BusBus;
+		};
+		AA000000000000000000004A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000040;
+			remoteInfo = BusBus;
+		};
+		AA00000000000000000000EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA00000000000000000000E0;
+			remoteInfo = BusBusWidget;
+		};
+		AA00000000000000000000FA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000100;
+			remoteInfo = BusBusWatchWidget;
+		};
+		AA0000000000000000000112 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA00000000000000000000F0;
+			remoteInfo = BusBusWatch;
+		};
+		AA0000000000000000000126 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA00000000000000000000F0;
+			remoteInfo = BusBusWatch;
+		};
+		AA000000000000000000030C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000070 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA0000000000000000000300;
+			remoteInfo = BusBusTopShelf;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA00000000000000000000EC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				AA00000000000000000000ED /* BusBusWidget.appex in Embed Foundation Extensions */,
+				AA000000000000000000030B /* BusBusTopShelf.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+		AA00000000000000000000F8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "";
+			dstSubfolder = PlugIns;
+			files = (
+				AA00000000000000000000F9 /* BusBusWatchWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+		};
+		AA0000000000000000000110 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolder = Product;
+			files = (
+				AA0000000000000000000111 /* BusBusWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		292D629730644FE700210F18 /* Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Icon.icon; sourceTree = "<group>"; };
+		AA0000000000000000000010 /* BusBus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusBus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000011 /* BusBusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusBusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000012 /* BusBusLiveAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusBusLiveAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000013 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		AA0000000000000000000014 /* Secrets.example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.example.xcconfig; sourceTree = "<group>"; };
+		AA0000000000000000000015 /* BusBus-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BusBus-Info.plist"; sourceTree = "<group>"; };
+		AA0000000000000000000016 /* BusBusScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusBusScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA00000000000000000000E1 /* BusBusWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BusBusWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA00000000000000000000F1 /* BusBusWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusBusWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000101 /* BusBusWatchWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BusBusWatchWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000121 /* BusBusWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusBusWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0000000000000000000205 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		AA0000000000000000000301 /* BusBusTopShelf.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = BusBusTopShelf.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA000000000000000000030E /* BusBusTopShelf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BusBusTopShelf.entitlements; sourceTree = "<group>"; };
+		AA000000000000000000030F /* BusBusTopShelf-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BusBusTopShelf-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AA00000000000000000000E3 /* Exceptions for "BusBus" folder in "BusBusWidget" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Board/BoardModels.swift,
+				Board/BusPuckView.swift,
+				Board/LineBadgeView.swift,
+				Board/MapRailsCanvas.swift,
+				Board/StopLabelsLayer.swift,
+				Design/DesignTokens.swift,
+				Design/FontRegistrar.swift,
+				Design/LinePalette.swift,
+				Design/Typography.swift,
+				InfoPlist.xcstrings,
+				Localizable.xcstrings,
+				MapEngine/JunctionDetector.swift,
+				MapEngine/LabelHeadroom.swift,
+				MapEngine/MapEngineTypes.swift,
+				MapEngine/MapLayoutEngine.swift,
+				MapEngine/MapMetrics.swift,
+				MapEngine/MapScene.swift,
+				MapEngine/RailPath.swift,
+				MapEngine/RouteCompressor.swift,
+				Persistence/Appearance.swift,
+				Persistence/AppGroup.swift,
+				Persistence/AppLanguage.swift,
+				Persistence/SavedSetup.swift,
+				"Resources/Fonts/Archivo-Black.ttf",
+				"Resources/Fonts/Archivo-Bold.ttf",
+				"Resources/Fonts/Archivo-ExtraBold.ttf",
+				"Resources/Fonts/Archivo-Medium.ttf",
+				"Resources/Fonts/SpaceMono-Bold.ttf",
+				"Resources/Fonts/SpaceMono-Regular.ttf",
+				Transit/AppClock.swift,
+				Transit/Models/TransitModels.swift,
+				Transit/Networking/APIKeys.swift,
+				Transit/Networking/HTTPClient.swift,
+				Transit/Networking/TransitProxy.swift,
+				Transit/Progress/BusProgressService.swift,
+				Transit/Progress/RouteGeometry.swift,
+				Transit/Providers/AdelaideMetroProvider.swift,
+				Transit/Providers/BizkaibusProvider.swift,
+				Transit/Providers/BusGovILProvider.swift,
+				Transit/Providers/CarrisMetropolitanaProvider.swift,
+				Transit/Providers/CitybusProvider.swift,
+				Transit/Providers/EFAProvider.swift,
+				Transit/Providers/EnturProvider.swift,
+				Transit/Providers/FoliProvider.swift,
+				Transit/Providers/GdanskProvider.swift,
+				Transit/Providers/GMBProvider.swift,
+				Transit/Providers/HafasProvider.swift,
+				Transit/Providers/IETTProvider.swift,
+				Transit/Providers/IsraelRouteLongName.swift,
+				Transit/Providers/KMBProvider.swift,
+				Transit/Providers/KrakowProvider.swift,
+				Transit/Providers/LPPProvider.swift,
+				Transit/Providers/MBTAProvider.swift,
+				Transit/Providers/MetroTransitProvider.swift,
+				Transit/Providers/MTABusTimeProvider.swift,
+				Transit/Providers/MTRBusProvider.swift,
+				Transit/Providers/NLBProvider.swift,
+				Transit/Providers/OneBusAwayProvider.swift,
+				Transit/Providers/PikasProvider.swift,
+				Transit/Providers/PoznanProvider.swift,
+				Transit/Providers/STARRennesProvider.swift,
+				Transit/Providers/STIBProvider.swift,
+				Transit/Providers/StrideProvider.swift,
+				Transit/Providers/SwissTransportProvider.swift,
+				Transit/Providers/TampereProvider.swift,
+				Transit/Providers/TfLProvider.swift,
+				Transit/Providers/ToeiBusProvider.swift,
+				Transit/Providers/TransitousProvider.swift,
+				Transit/Providers/UmoNextBusProvider.swift,
+				Transit/Providers/VAGProvider.swift,
+				Transit/Providers/WienerLinienProvider.swift,
+				Transit/Shapes/EFAShape.swift,
+				Transit/Shapes/HKRouteLines.swift,
+				Transit/Shapes/Polyline.swift,
+				Transit/Shapes/RouteShape.swift,
+				Transit/Shapes/ShapeCheck.swift,
+				Transit/TransitProvider.swift,
+				WidgetSupport/HistoryLookup.swift,
+				WidgetSupport/NextBusEntry.swift,
+				WidgetSupport/WidgetDeepLink.swift,
+				WidgetSupport/WidgetMap.swift,
+				WidgetSupport/WidgetMessage.swift,
+				WidgetSupport/WidgetProviderGate.swift,
+				WidgetSupport/WidgetRoutes.swift,
+				WidgetSupport/WidgetSnapshot.swift,
+				WidgetSupport/WidgetTimelineMath.swift,
+			);
+			target = AA00000000000000000000E0 /* BusBusWidget */;
+		};
+		AA00000000000000000000EE /* Exceptions for "BusBusWidget" folder in "BusBusTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Views/AccessoryViews.swift,
+				Views/NextBusWidgetView.swift,
+				Views/WidgetMapView.swift,
+				Views/WidgetReadout.swift,
+				Views/WidgetStates.swift,
+				Views/WidgetTheme.swift,
+			);
+			target = AA0000000000000000000041 /* BusBusTests */;
+		};
+		AA00000000000000000000F3 /* Exceptions for "BusBus" folder in "BusBusWatch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Board/BoardModels.swift,
+				Board/BusPuckView.swift,
+				Board/LineBadgeView.swift,
+				Board/MapRailsCanvas.swift,
+				Board/StopLabelsLayer.swift,
+				Design/DesignTokens.swift,
+				Design/FontRegistrar.swift,
+				Design/LinePalette.swift,
+				Design/Typography.swift,
+				InfoPlist.xcstrings,
+				Localizable.xcstrings,
+				MapEngine/JunctionDetector.swift,
+				MapEngine/LabelHeadroom.swift,
+				MapEngine/MapEngineTypes.swift,
+				MapEngine/MapFixtures.swift,
+				MapEngine/MapLayoutEngine.swift,
+				MapEngine/MapMetrics.swift,
+				MapEngine/MapScene.swift,
+				MapEngine/RailPath.swift,
+				MapEngine/RouteCompressor.swift,
+				Persistence/Appearance.swift,
+				Persistence/AppGroup.swift,
+				Persistence/AppLanguage.swift,
+				Persistence/SavedSetup.swift,
+				"Resources/Fonts/Archivo-Black.ttf",
+				"Resources/Fonts/Archivo-Bold.ttf",
+				"Resources/Fonts/Archivo-ExtraBold.ttf",
+				"Resources/Fonts/Archivo-Medium.ttf",
+				"Resources/Fonts/SpaceMono-Bold.ttf",
+				"Resources/Fonts/SpaceMono-Regular.ttf",
+				Screenshots/ScreenshotPlaces.json,
+				Transit/AppClock.swift,
+				Transit/Models/TransitModels.swift,
+				Transit/Networking/APIKeys.swift,
+				Transit/Networking/HTTPClient.swift,
+				Transit/Networking/TransitProxy.swift,
+				Transit/Progress/BusProgressService.swift,
+				Transit/Progress/RouteGeometry.swift,
+				Transit/Providers/AdelaideMetroProvider.swift,
+				Transit/Providers/BizkaibusProvider.swift,
+				Transit/Providers/BusGovILProvider.swift,
+				Transit/Providers/CarrisMetropolitanaProvider.swift,
+				Transit/Providers/CitybusProvider.swift,
+				Transit/Providers/EFAProvider.swift,
+				Transit/Providers/EnturProvider.swift,
+				Transit/Providers/FoliProvider.swift,
+				Transit/Providers/GdanskProvider.swift,
+				Transit/Providers/GMBProvider.swift,
+				Transit/Providers/HafasProvider.swift,
+				Transit/Providers/IETTProvider.swift,
+				Transit/Providers/IsraelRouteLongName.swift,
+				Transit/Providers/KMBProvider.swift,
+				Transit/Providers/KrakowProvider.swift,
+				Transit/Providers/LPPProvider.swift,
+				Transit/Providers/MBTAProvider.swift,
+				Transit/Providers/MetroTransitProvider.swift,
+				Transit/Providers/MockPlace.swift,
+				Transit/Providers/MockTransitProvider.swift,
+				Transit/Providers/MTABusTimeProvider.swift,
+				Transit/Providers/MTRBusProvider.swift,
+				Transit/Providers/NLBProvider.swift,
+				Transit/Providers/OneBusAwayProvider.swift,
+				Transit/Providers/PikasProvider.swift,
+				Transit/Providers/PoznanProvider.swift,
+				Transit/Providers/STARRennesProvider.swift,
+				Transit/Providers/STIBProvider.swift,
+				Transit/Providers/StrideProvider.swift,
+				Transit/Providers/SwissTransportProvider.swift,
+				Transit/Providers/TampereProvider.swift,
+				Transit/Providers/TfLProvider.swift,
+				Transit/Providers/ToeiBusProvider.swift,
+				Transit/Providers/TransitousProvider.swift,
+				Transit/Providers/UmoNextBusProvider.swift,
+				Transit/Providers/VAGProvider.swift,
+				Transit/Providers/WienerLinienProvider.swift,
+				Transit/Shapes/EFAShape.swift,
+				Transit/Shapes/HKRouteLines.swift,
+				Transit/Shapes/Polyline.swift,
+				Transit/Shapes/RouteShape.swift,
+				Transit/Shapes/ShapeCheck.swift,
+				Transit/TransitProvider.swift,
+				WatchSupport/WatchRefreshPolicy.swift,
+				WatchSupport/WatchSyncApply.swift,
+				WatchSupport/WatchSyncPayload.swift,
+				WidgetSupport/HistoryLookup.swift,
+				WidgetSupport/NextBusEntry.swift,
+				WidgetSupport/WidgetDeepLink.swift,
+				WidgetSupport/WidgetMap.swift,
+				WidgetSupport/WidgetMessage.swift,
+				WidgetSupport/WidgetProviderGate.swift,
+				WidgetSupport/WidgetRoutes.swift,
+				WidgetSupport/WidgetSnapshot.swift,
+				WidgetSupport/WidgetTimelineMath.swift,
+			);
+			target = AA00000000000000000000F0 /* BusBusWatch */;
+		};
+		AA00000000000000000000F4 /* Exceptions for "BusBusWidget" folder in "BusBusWatch" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				NextBusTimelineProvider.swift,
+				SavedSetupEntity.swift,
+				SelectSavedSetupIntent.swift,
+				Views/AccessoryViews.swift,
+				Views/WidgetReadout.swift,
+				Views/WidgetStates.swift,
+				Views/WidgetTheme.swift,
+				WidgetArrivalsFetcher.swift,
+			);
+			target = AA00000000000000000000F0 /* BusBusWatch */;
+		};
+		AA0000000000000000000103 /* Exceptions for "BusBus" folder in "BusBusWatchWidget" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Board/BoardModels.swift,
+				Board/BusPuckView.swift,
+				Board/LineBadgeView.swift,
+				Board/MapRailsCanvas.swift,
+				Board/StopLabelsLayer.swift,
+				Design/DesignTokens.swift,
+				Design/FontRegistrar.swift,
+				Design/LinePalette.swift,
+				Design/Typography.swift,
+				InfoPlist.xcstrings,
+				Localizable.xcstrings,
+				MapEngine/JunctionDetector.swift,
+				MapEngine/LabelHeadroom.swift,
+				MapEngine/MapEngineTypes.swift,
+				MapEngine/MapLayoutEngine.swift,
+				MapEngine/MapMetrics.swift,
+				MapEngine/MapScene.swift,
+				MapEngine/RailPath.swift,
+				MapEngine/RouteCompressor.swift,
+				Persistence/Appearance.swift,
+				Persistence/AppGroup.swift,
+				Persistence/AppLanguage.swift,
+				Persistence/SavedSetup.swift,
+				"Resources/Fonts/Archivo-Black.ttf",
+				"Resources/Fonts/Archivo-Bold.ttf",
+				"Resources/Fonts/Archivo-ExtraBold.ttf",
+				"Resources/Fonts/Archivo-Medium.ttf",
+				"Resources/Fonts/SpaceMono-Bold.ttf",
+				"Resources/Fonts/SpaceMono-Regular.ttf",
+				Transit/AppClock.swift,
+				Transit/Models/TransitModels.swift,
+				Transit/Networking/APIKeys.swift,
+				Transit/Networking/HTTPClient.swift,
+				Transit/Networking/TransitProxy.swift,
+				Transit/Progress/BusProgressService.swift,
+				Transit/Progress/RouteGeometry.swift,
+				Transit/Providers/AdelaideMetroProvider.swift,
+				Transit/Providers/BizkaibusProvider.swift,
+				Transit/Providers/BusGovILProvider.swift,
+				Transit/Providers/CarrisMetropolitanaProvider.swift,
+				Transit/Providers/CitybusProvider.swift,
+				Transit/Providers/EFAProvider.swift,
+				Transit/Providers/EnturProvider.swift,
+				Transit/Providers/FoliProvider.swift,
+				Transit/Providers/GdanskProvider.swift,
+				Transit/Providers/GMBProvider.swift,
+				Transit/Providers/HafasProvider.swift,
+				Transit/Providers/IETTProvider.swift,
+				Transit/Providers/IsraelRouteLongName.swift,
+				Transit/Providers/KMBProvider.swift,
+				Transit/Providers/KrakowProvider.swift,
+				Transit/Providers/LPPProvider.swift,
+				Transit/Providers/MBTAProvider.swift,
+				Transit/Providers/MetroTransitProvider.swift,
+				Transit/Providers/MTABusTimeProvider.swift,
+				Transit/Providers/MTRBusProvider.swift,
+				Transit/Providers/NLBProvider.swift,
+				Transit/Providers/OneBusAwayProvider.swift,
+				Transit/Providers/PikasProvider.swift,
+				Transit/Providers/PoznanProvider.swift,
+				Transit/Providers/STARRennesProvider.swift,
+				Transit/Providers/STIBProvider.swift,
+				Transit/Providers/StrideProvider.swift,
+				Transit/Providers/SwissTransportProvider.swift,
+				Transit/Providers/TampereProvider.swift,
+				Transit/Providers/TfLProvider.swift,
+				Transit/Providers/ToeiBusProvider.swift,
+				Transit/Providers/TransitousProvider.swift,
+				Transit/Providers/UmoNextBusProvider.swift,
+				Transit/Providers/VAGProvider.swift,
+				Transit/Providers/WienerLinienProvider.swift,
+				Transit/Shapes/EFAShape.swift,
+				Transit/Shapes/HKRouteLines.swift,
+				Transit/Shapes/Polyline.swift,
+				Transit/Shapes/RouteShape.swift,
+				Transit/Shapes/ShapeCheck.swift,
+				Transit/TransitProvider.swift,
+				WatchSupport/WatchRefreshPolicy.swift,
+				WatchSupport/WatchSyncApply.swift,
+				WatchSupport/WatchSyncPayload.swift,
+				WidgetSupport/HistoryLookup.swift,
+				WidgetSupport/NextBusEntry.swift,
+				WidgetSupport/WidgetDeepLink.swift,
+				WidgetSupport/WidgetMap.swift,
+				WidgetSupport/WidgetMessage.swift,
+				WidgetSupport/WidgetProviderGate.swift,
+				WidgetSupport/WidgetRoutes.swift,
+				WidgetSupport/WidgetSnapshot.swift,
+				WidgetSupport/WidgetTimelineMath.swift,
+			);
+			target = AA0000000000000000000100 /* BusBusWatchWidget */;
+		};
+		AA0000000000000000000104 /* Exceptions for "BusBusWidget" folder in "BusBusWatchWidget" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				NextBusTimelineProvider.swift,
+				SavedSetupEntity.swift,
+				SelectSavedSetupIntent.swift,
+				Views/AccessoryViews.swift,
+				Views/WidgetReadout.swift,
+				Views/WidgetStates.swift,
+				Views/WidgetTheme.swift,
+				WidgetArrivalsFetcher.swift,
+			);
+			target = AA0000000000000000000100 /* BusBusWatchWidget */;
+		};
+		AA0000000000000000000303 /* Exceptions for "BusBus" folder in "BusBusTopShelf" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Board/BoardModels.swift,
+				Board/BusPuckView.swift,
+				Board/LineBadgeView.swift,
+				Board/MapRailsCanvas.swift,
+				Board/StopLabelsLayer.swift,
+				Design/DesignTokens.swift,
+				Design/FontRegistrar.swift,
+				Design/LinePalette.swift,
+				Design/Typography.swift,
+				InfoPlist.xcstrings,
+				Localizable.xcstrings,
+				MapEngine/JunctionDetector.swift,
+				MapEngine/LabelHeadroom.swift,
+				MapEngine/MapEngineTypes.swift,
+				MapEngine/MapLayoutEngine.swift,
+				MapEngine/MapMetrics.swift,
+				MapEngine/MapScene.swift,
+				MapEngine/RailPath.swift,
+				MapEngine/RouteCompressor.swift,
+				Persistence/Appearance.swift,
+				Persistence/AppGroup.swift,
+				Persistence/AppLanguage.swift,
+				Persistence/SavedSetup.swift,
+				"Resources/Fonts/Archivo-Black.ttf",
+				"Resources/Fonts/Archivo-Bold.ttf",
+				"Resources/Fonts/Archivo-ExtraBold.ttf",
+				"Resources/Fonts/Archivo-Medium.ttf",
+				"Resources/Fonts/SpaceMono-Bold.ttf",
+				"Resources/Fonts/SpaceMono-Regular.ttf",
+				Transit/AppClock.swift,
+				Transit/Models/TransitModels.swift,
+				Transit/Networking/APIKeys.swift,
+				Transit/Networking/HTTPClient.swift,
+				Transit/Networking/TransitProxy.swift,
+				Transit/Progress/BusProgressService.swift,
+				Transit/Progress/RouteGeometry.swift,
+				Transit/Providers/AdelaideMetroProvider.swift,
+				Transit/Providers/BizkaibusProvider.swift,
+				Transit/Providers/BusGovILProvider.swift,
+				Transit/Providers/CarrisMetropolitanaProvider.swift,
+				Transit/Providers/CitybusProvider.swift,
+				Transit/Providers/EFAProvider.swift,
+				Transit/Providers/EnturProvider.swift,
+				Transit/Providers/FoliProvider.swift,
+				Transit/Providers/GdanskProvider.swift,
+				Transit/Providers/GMBProvider.swift,
+				Transit/Providers/HafasProvider.swift,
+				Transit/Providers/IETTProvider.swift,
+				Transit/Providers/IsraelRouteLongName.swift,
+				Transit/Providers/KMBProvider.swift,
+				Transit/Providers/KrakowProvider.swift,
+				Transit/Providers/LPPProvider.swift,
+				Transit/Providers/MBTAProvider.swift,
+				Transit/Providers/MetroTransitProvider.swift,
+				Transit/Providers/MTABusTimeProvider.swift,
+				Transit/Providers/MTRBusProvider.swift,
+				Transit/Providers/NLBProvider.swift,
+				Transit/Providers/OneBusAwayProvider.swift,
+				Transit/Providers/PikasProvider.swift,
+				Transit/Providers/PoznanProvider.swift,
+				Transit/Providers/STARRennesProvider.swift,
+				Transit/Providers/STIBProvider.swift,
+				Transit/Providers/StrideProvider.swift,
+				Transit/Providers/SwissTransportProvider.swift,
+				Transit/Providers/TampereProvider.swift,
+				Transit/Providers/TfLProvider.swift,
+				Transit/Providers/ToeiBusProvider.swift,
+				Transit/Providers/TransitousProvider.swift,
+				Transit/Providers/UmoNextBusProvider.swift,
+				Transit/Providers/VAGProvider.swift,
+				Transit/Providers/WienerLinienProvider.swift,
+				Transit/Shapes/EFAShape.swift,
+				Transit/Shapes/HKRouteLines.swift,
+				Transit/Shapes/Polyline.swift,
+				Transit/Shapes/RouteShape.swift,
+				Transit/Shapes/ShapeCheck.swift,
+				Transit/TransitProvider.swift,
+				TV/StopGlance.swift,
+				TV/TopShelfBoards.swift,
+				TV/TVStopCard.swift,
+				TV/TVStopOrder.swift,
+				WidgetSupport/HistoryLookup.swift,
+				WidgetSupport/NextBusEntry.swift,
+				WidgetSupport/WidgetDeepLink.swift,
+				WidgetSupport/WidgetMap.swift,
+				WidgetSupport/WidgetMessage.swift,
+				WidgetSupport/WidgetProviderGate.swift,
+				WidgetSupport/WidgetRoutes.swift,
+				WidgetSupport/WidgetSnapshot.swift,
+				WidgetSupport/WidgetTimelineMath.swift,
+			);
+			target = AA0000000000000000000300 /* BusBusTopShelf */;
+		};
+		AA0000000000000000000304 /* Exceptions for "BusBusWidget" folder in "BusBusTopShelf" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				WidgetArrivalsFetcher.swift,
+			);
+			target = AA0000000000000000000300 /* BusBusTopShelf */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AA0000000000000000000031 /* BusBus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AA00000000000000000000E3 /* Exceptions for "BusBus" folder in "BusBusWidget" target */,
+				AA00000000000000000000F3 /* Exceptions for "BusBus" folder in "BusBusWatch" target */,
+				AA0000000000000000000103 /* Exceptions for "BusBus" folder in "BusBusWatchWidget" target */,
+				AA0000000000000000000303 /* Exceptions for "BusBus" folder in "BusBusTopShelf" target */,
+			);
+			path = BusBus;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000033 /* BusBusTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BusBusTests;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000034 /* BusBusLiveAPITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BusBusLiveAPITests;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000036 /* BusBusScreenshots */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BusBusScreenshots;
+			sourceTree = "<group>";
+		};
+		AA00000000000000000000E2 /* BusBusWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AA00000000000000000000EE /* Exceptions for "BusBusWidget" folder in "BusBusTests" target */,
+				AA00000000000000000000F4 /* Exceptions for "BusBusWidget" folder in "BusBusWatch" target */,
+				AA0000000000000000000104 /* Exceptions for "BusBusWidget" folder in "BusBusWatchWidget" target */,
+				AA0000000000000000000304 /* Exceptions for "BusBusWidget" folder in "BusBusTopShelf" target */,
+			);
+			path = BusBusWidget;
+			sourceTree = "<group>";
+		};
+		AA00000000000000000000F2 /* BusBusWatch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BusBusWatch;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000102 /* BusBusWatchWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BusBusWatchWidget;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000122 /* BusBusWatchTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BusBusWatchTests;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000302 /* BusBusTopShelf */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BusBusTopShelf;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA0000000000000000000020 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				AA00000000000000000000B1 /* FirebaseAnalytics in Frameworks */,
+				AA00000000000000000000B2 /* FirebaseCrashlytics in Frameworks */,
+				AA00000000000000000000B3 /* FirebaseRemoteConfig in Frameworks */,
+				AA00000000000000000000B4 /* FirebaseAppCheck in Frameworks */,
+				AA0000000000000000000203 /* LoveLetterCore in Frameworks */,
+				AA0000000000000000000204 /* LoveLetterUI in Frameworks */,
+				AA0000000000000000000212 /* HelpView in Frameworks */,
+			);
+		};
+		AA0000000000000000000021 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000022 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000023 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		AA00000000000000000000E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		AA00000000000000000000F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000106 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000124 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA0000000000000000000030 = {
+			isa = PBXGroup;
+			children = (
+				292D629730644FE700210F18 /* Icon.icon */,
+				AA0000000000000000000031 /* BusBus */,
+				AA0000000000000000000033 /* BusBusTests */,
+				AA0000000000000000000034 /* BusBusLiveAPITests */,
+				AA0000000000000000000036 /* BusBusScreenshots */,
+				AA00000000000000000000E2 /* BusBusWidget */,
+				AA00000000000000000000F2 /* BusBusWatch */,
+				AA0000000000000000000102 /* BusBusWatchWidget */,
+				AA0000000000000000000122 /* BusBusWatchTests */,
+				AA0000000000000000000302 /* BusBusTopShelf */,
+				AA0000000000000000000035 /* Config */,
+				AA0000000000000000000032 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000032 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000010 /* BusBus.app */,
+				AA0000000000000000000011 /* BusBusTests.xctest */,
+				AA0000000000000000000012 /* BusBusLiveAPITests.xctest */,
+				AA0000000000000000000016 /* BusBusScreenshots.xctest */,
+				AA00000000000000000000E1 /* BusBusWidget.appex */,
+				AA00000000000000000000F1 /* BusBusWatch.app */,
+				AA0000000000000000000101 /* BusBusWatchWidget.appex */,
+				AA0000000000000000000121 /* BusBusWatchTests.xctest */,
+				AA0000000000000000000301 /* BusBusTopShelf.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000035 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000013 /* Debug.xcconfig */,
+				AA0000000000000000000205 /* Release.xcconfig */,
+				AA0000000000000000000014 /* Secrets.example.xcconfig */,
+				AA0000000000000000000015 /* BusBus-Info.plist */,
+				AA000000000000000000030E /* BusBusTopShelf.entitlements */,
+				AA000000000000000000030F /* BusBusTopShelf-Info.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA0000000000000000000040 /* BusBus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000060 /* Build configuration list for PBXNativeTarget "BusBus" */;
+			buildPhases = (
+				AA0000000000000000000050 /* Sources */,
+				AA0000000000000000000020 /* Frameworks */,
+				AA0000000000000000000051 /* Resources */,
+				AA00000000000000000000EC /* Embed Foundation Extensions */,
+				AA0000000000000000000110 /* Embed Watch Content */,
+				AA00000000000000000000C0 /* Upload Crashlytics Symbols */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA00000000000000000000EB /* PBXTargetDependency */,
+				AA0000000000000000000113 /* PBXTargetDependency */,
+				AA000000000000000000030D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000031 /* BusBus */,
+			);
+			name = BusBus;
+			packageProductDependencies = (
+				AA00000000000000000000A1 /* FirebaseAnalytics */,
+				AA00000000000000000000A2 /* FirebaseCrashlytics */,
+				AA00000000000000000000A3 /* FirebaseRemoteConfig */,
+				AA00000000000000000000A4 /* FirebaseAppCheck */,
+				AA0000000000000000000201 /* LoveLetterCore */,
+				AA0000000000000000000202 /* LoveLetterUI */,
+				AA0000000000000000000211 /* HelpView */,
+			);
+			productName = BusBus;
+			productReference = AA0000000000000000000010 /* BusBus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA0000000000000000000041 /* BusBusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000061 /* Build configuration list for PBXNativeTarget "BusBusTests" */;
+			buildPhases = (
+				AA0000000000000000000052 /* Sources */,
+				AA0000000000000000000021 /* Frameworks */,
+				AA0000000000000000000053 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000000000000000000045 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000033 /* BusBusTests */,
+			);
+			name = BusBusTests;
+			productName = BusBusTests;
+			productReference = AA0000000000000000000011 /* BusBusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AA0000000000000000000042 /* BusBusLiveAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000062 /* Build configuration list for PBXNativeTarget "BusBusLiveAPITests" */;
+			buildPhases = (
+				AA0000000000000000000054 /* Sources */,
+				AA0000000000000000000022 /* Frameworks */,
+				AA0000000000000000000055 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000000000000000000047 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000034 /* BusBusLiveAPITests */,
+			);
+			name = BusBusLiveAPITests;
+			productName = BusBusLiveAPITests;
+			productReference = AA0000000000000000000012 /* BusBusLiveAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AA0000000000000000000043 /* BusBusScreenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000063 /* Build configuration list for PBXNativeTarget "BusBusScreenshots" */;
+			buildPhases = (
+				AA0000000000000000000056 /* Sources */,
+				AA0000000000000000000023 /* Frameworks */,
+				AA0000000000000000000057 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000000000000000000049 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000036 /* BusBusScreenshots */,
+			);
+			name = BusBusScreenshots;
+			productName = BusBusScreenshots;
+			productReference = AA0000000000000000000016 /* BusBusScreenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		AA00000000000000000000E0 /* BusBusWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA00000000000000000000E7 /* Build configuration list for PBXNativeTarget "BusBusWidget" */;
+			buildPhases = (
+				AA00000000000000000000E4 /* Sources */,
+				AA00000000000000000000E5 /* Frameworks */,
+				AA00000000000000000000E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				AA00000000000000000000E2 /* BusBusWidget */,
+			);
+			name = BusBusWidget;
+			productName = BusBusWidget;
+			productReference = AA00000000000000000000E1 /* BusBusWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		AA00000000000000000000F0 /* BusBusWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA00000000000000000000FC /* Build configuration list for PBXNativeTarget "BusBusWatch" */;
+			buildPhases = (
+				AA00000000000000000000F5 /* Sources */,
+				AA00000000000000000000F6 /* Frameworks */,
+				AA00000000000000000000F7 /* Resources */,
+				AA00000000000000000000F8 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA00000000000000000000FB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA00000000000000000000F2 /* BusBusWatch */,
+			);
+			name = BusBusWatch;
+			productName = BusBusWatch;
+			productReference = AA00000000000000000000F1 /* BusBusWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA0000000000000000000100 /* BusBusWatchWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000108 /* Build configuration list for PBXNativeTarget "BusBusWatchWidget" */;
+			buildPhases = (
+				AA0000000000000000000105 /* Sources */,
+				AA0000000000000000000106 /* Frameworks */,
+				AA0000000000000000000107 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000102 /* BusBusWatchWidget */,
+			);
+			name = BusBusWatchWidget;
+			productName = BusBusWatchWidget;
+			productReference = AA0000000000000000000101 /* BusBusWatchWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		AA0000000000000000000120 /* BusBusWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000128 /* Build configuration list for PBXNativeTarget "BusBusWatchTests" */;
+			buildPhases = (
+				AA0000000000000000000123 /* Sources */,
+				AA0000000000000000000124 /* Frameworks */,
+				AA0000000000000000000125 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000000000000000000127 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000122 /* BusBusWatchTests */,
+			);
+			name = BusBusWatchTests;
+			productName = BusBusWatchTests;
+			productReference = AA0000000000000000000121 /* BusBusWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		AA0000000000000000000300 /* BusBusTopShelf */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA0000000000000000000308 /* Build configuration list for PBXNativeTarget "BusBusTopShelf" */;
+			buildPhases = (
+				AA0000000000000000000305 /* Sources */,
+				AA0000000000000000000306 /* Frameworks */,
+				AA0000000000000000000307 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000000000000000000302 /* BusBusTopShelf */,
+			);
+			name = BusBusTopShelf;
+			productName = BusBusTopShelf;
+			productReference = AA0000000000000000000301 /* BusBusTopShelf.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0000000000000000000070 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					AA0000000000000000000040 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					AA0000000000000000000041 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = AA0000000000000000000040;
+					};
+					AA0000000000000000000042 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = AA0000000000000000000040;
+					};
+					AA0000000000000000000043 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = AA0000000000000000000040;
+					};
+					AA00000000000000000000E0 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					AA00000000000000000000F0 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					AA0000000000000000000100 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					AA0000000000000000000120 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = AA00000000000000000000F0;
+					};
+					AA0000000000000000000300 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+				};
+			};
+			buildConfigurationList = AA0000000000000000000080 /* Build configuration list for PBXProject "BusBus" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				am,
+				ar,
+				cs,
+				de,
+				es,
+				et,
+				eu,
+				fi,
+				fil,
+				fr,
+				he,
+				hi,
+				"hmn-Latn",
+				hu,
+				it,
+				ja,
+				ko,
+				lt,
+				nb,
+				nl,
+				nn,
+				pa,
+				pl,
+				"pt-BR",
+				"pt-PT",
+				ro,
+				ru,
+				sl,
+				so,
+				sv,
+				tr,
+				vi,
+				"zh-Hans",
+				"zh-Hant",
+			);
+			mainGroup = AA0000000000000000000030;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AA00000000000000000000A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				AA0000000000000000000200 /* XCRemoteSwiftPackageReference "LoveLetterSDK" */,
+				AA0000000000000000000210 /* XCRemoteSwiftPackageReference "HelpView" */,
+			);
+			preferredProjectObjectVersion = 90;
+			productRefGroup = AA0000000000000000000032 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA0000000000000000000040 /* BusBus */,
+				AA0000000000000000000041 /* BusBusTests */,
+				AA0000000000000000000042 /* BusBusLiveAPITests */,
+				AA0000000000000000000043 /* BusBusScreenshots */,
+				AA00000000000000000000E0 /* BusBusWidget */,
+				AA00000000000000000000F0 /* BusBusWatch */,
+				AA0000000000000000000100 /* BusBusWatchWidget */,
+				AA0000000000000000000120 /* BusBusWatchTests */,
+				AA0000000000000000000300 /* BusBusTopShelf */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA0000000000000000000051 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				292D629830644FE700210F18 /* Icon.icon in Resources */,
+			);
+		};
+		AA0000000000000000000053 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000055 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000057 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		AA00000000000000000000E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		AA00000000000000000000F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+				AA00000000000000000000FF /* Icon.icon in Resources */,
+			);
+		};
+		AA0000000000000000000107 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000125 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000307 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA00000000000000000000C0 /* Upload Crashlytics Symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Upload Crashlytics Symbols";
+			shellPath = /bin/sh;
+			shellScript = (
+				"# Without the Firebase config there is no project to upload to, so the build carries on quietly.",
+				"if [ ! -f \"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleService-Info.plist\" ]; then",
+				"  echo \"GoogleService-Info.plist not bundled; skipping Crashlytics symbol upload.\"",
+				"  exit 0",
+				"fi",
+				"\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"",
+				"",
+			);
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA0000000000000000000050 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000052 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000054 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000056 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		AA00000000000000000000E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		AA00000000000000000000F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000105 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000123 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		AA0000000000000000000305 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA0000000000000000000045 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000040 /* BusBus */;
+			targetProxy = AA0000000000000000000046 /* PBXContainerItemProxy */;
+		};
+		AA0000000000000000000047 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000040 /* BusBus */;
+			targetProxy = AA0000000000000000000048 /* PBXContainerItemProxy */;
+		};
+		AA0000000000000000000049 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000040 /* BusBus */;
+			targetProxy = AA000000000000000000004A /* PBXContainerItemProxy */;
+		};
+		AA00000000000000000000EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				macos,
+			);
+			target = AA00000000000000000000E0 /* BusBusWidget */;
+			targetProxy = AA00000000000000000000EA /* PBXContainerItemProxy */;
+		};
+		AA00000000000000000000FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA0000000000000000000100 /* BusBusWatchWidget */;
+			targetProxy = AA00000000000000000000FA /* PBXContainerItemProxy */;
+		};
+		AA0000000000000000000113 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = AA00000000000000000000F0 /* BusBusWatch */;
+			targetProxy = AA0000000000000000000112 /* PBXContainerItemProxy */;
+		};
+		AA0000000000000000000127 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA00000000000000000000F0 /* BusBusWatch */;
+			targetProxy = AA0000000000000000000126 /* PBXContainerItemProxy */;
+		};
+		AA000000000000000000030D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilters = (
+				tvos,
+			);
+			target = AA0000000000000000000300 /* BusBusTopShelf */;
+			targetProxy = AA000000000000000000030C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AA0000000000000000000090 /* Debug configuration for PBXProject "BusBus" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 10;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DRIVERKIT_DEPLOYMENT_TARGET = 27.0;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 27.0;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		AA0000000000000000000091 /* Release configuration for PBXProject "BusBus" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 10;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DRIVERKIT_DEPLOYMENT_TARGET = 27.0;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				TVOS_DEPLOYMENT_TARGET = 27.0;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		AA0000000000000000000092 /* Debug configuration for PBXNativeTarget "BusBus" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA0000000000000000000013 /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=appletv*]" = "App Icon & Top Shelf Image";
+				CODE_SIGN_ENTITLEMENTS = Config/BusBus.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBus-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Finds bus stops near you for the setup screen.";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx appletvos appletvsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
+			};
+			name = Debug;
+		};
+		AA0000000000000000000093 /* Release configuration for PBXNativeTarget "BusBus" */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA0000000000000000000205 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=appletv*]" = "App Icon & Top Shelf Image";
+				CODE_SIGN_ENTITLEMENTS = Config/BusBus.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=appletvos*]" = "Config/BusBus-Release.entitlements";
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "Config/BusBus-Release.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBus-Release-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Finds bus stops near you for the setup screen.";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx appletvos appletvsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,3";
+			};
+			name = Release;
+		};
+		AA0000000000000000000094 /* Debug configuration for PBXNativeTarget "BusBusTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BusBus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BusBus";
+			};
+			name = Debug;
+		};
+		AA0000000000000000000095 /* Release configuration for PBXNativeTarget "BusBusTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBusTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BusBus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BusBus";
+			};
+			name = Release;
+		};
+		AA0000000000000000000096 /* Debug configuration for PBXNativeTarget "BusBusLiveAPITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBusLiveAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BusBus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BusBus";
+			};
+			name = Debug;
+		};
+		AA0000000000000000000097 /* Release configuration for PBXNativeTarget "BusBusLiveAPITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBusLiveAPITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BusBus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BusBus";
+			};
+			name = Release;
+		};
+		AA0000000000000000000098 /* Debug configuration for PBXNativeTarget "BusBusScreenshots" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBusScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = BusBus;
+			};
+			name = Debug;
+		};
+		AA0000000000000000000099 /* Release configuration for PBXNativeTarget "BusBusScreenshots" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBusScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = BusBus;
+			};
+			name = Release;
+		};
+		AA00000000000000000000E8 /* Debug configuration for PBXNativeTarget "BusBusWidget" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/BusBusWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBusWidget-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus.BusBusWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BUSBUS_WIDGET $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA00000000000000000000E9 /* Release configuration for PBXNativeTarget "BusBusWidget" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/BusBusWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBusWidget-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus.BusBusWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BUSBUS_WIDGET $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA00000000000000000000FD /* Debug configuration for PBXNativeTarget "BusBusWatch" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
+				CODE_SIGN_ENTITLEMENTS = Config/BusBusWatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBusWatch-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_WKApplication = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.hayek.BusBus;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BUSBUS_WIDGET $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		AA00000000000000000000FE /* Release configuration for PBXNativeTarget "BusBusWatch" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
+				CODE_SIGN_ENTITLEMENTS = Config/BusBusWatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBusWatch-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_WKApplication = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.hayek.BusBus;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BUSBUS_WIDGET $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		AA0000000000000000000109 /* Debug configuration for PBXNativeTarget "BusBusWatchWidget" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/BusBusWatchWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBusWatchWidget-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus.watchkitapp.BusBusWatchWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BUSBUS_WIDGET $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		AA000000000000000000010A /* Release configuration for PBXNativeTarget "BusBusWatchWidget" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/BusBusWatchWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBusWatchWidget-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus.watchkitapp.BusBusWatchWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BUSBUS_WIDGET $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		AA0000000000000000000129 /* Debug configuration for PBXNativeTarget "BusBusWatchTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBusWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BusBusWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BusBusWatch";
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		AA000000000000000000012A /* Release configuration for PBXNativeTarget "BusBusWatchTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBusWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BusBusWatch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BusBusWatch";
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		AA0000000000000000000309 /* Debug configuration for PBXNativeTarget "BusBusTopShelf" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/BusBusTopShelf.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBusTopShelf-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus.TopShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BUSBUS_WIDGET BUSBUS_TOPSHELF $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Debug;
+		};
+		AA000000000000000000030A /* Release configuration for PBXNativeTarget "BusBusTopShelf" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Config/BusBusTopShelf.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q7U5734Q3T;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/BusBusTopShelf-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "My Bus Stop";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hayek.BusBus.TopShelf;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BUSBUS_WIDGET BUSBUS_TOPSHELF $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA0000000000000000000060 /* Build configuration list for PBXNativeTarget "BusBus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000092 /* Debug configuration for PBXNativeTarget "BusBus" */,
+				AA0000000000000000000093 /* Release configuration for PBXNativeTarget "BusBus" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000061 /* Build configuration list for PBXNativeTarget "BusBusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000094 /* Debug configuration for PBXNativeTarget "BusBusTests" */,
+				AA0000000000000000000095 /* Release configuration for PBXNativeTarget "BusBusTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000062 /* Build configuration list for PBXNativeTarget "BusBusLiveAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000096 /* Debug configuration for PBXNativeTarget "BusBusLiveAPITests" */,
+				AA0000000000000000000097 /* Release configuration for PBXNativeTarget "BusBusLiveAPITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000063 /* Build configuration list for PBXNativeTarget "BusBusScreenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000098 /* Debug configuration for PBXNativeTarget "BusBusScreenshots" */,
+				AA0000000000000000000099 /* Release configuration for PBXNativeTarget "BusBusScreenshots" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000080 /* Build configuration list for PBXProject "BusBus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000090 /* Debug configuration for PBXProject "BusBus" */,
+				AA0000000000000000000091 /* Release configuration for PBXProject "BusBus" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA00000000000000000000E7 /* Build configuration list for PBXNativeTarget "BusBusWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA00000000000000000000E8 /* Debug configuration for PBXNativeTarget "BusBusWidget" */,
+				AA00000000000000000000E9 /* Release configuration for PBXNativeTarget "BusBusWidget" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA00000000000000000000FC /* Build configuration list for PBXNativeTarget "BusBusWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA00000000000000000000FD /* Debug configuration for PBXNativeTarget "BusBusWatch" */,
+				AA00000000000000000000FE /* Release configuration for PBXNativeTarget "BusBusWatch" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000108 /* Build configuration list for PBXNativeTarget "BusBusWatchWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000109 /* Debug configuration for PBXNativeTarget "BusBusWatchWidget" */,
+				AA000000000000000000010A /* Release configuration for PBXNativeTarget "BusBusWatchWidget" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000128 /* Build configuration list for PBXNativeTarget "BusBusWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000129 /* Debug configuration for PBXNativeTarget "BusBusWatchTests" */,
+				AA000000000000000000012A /* Release configuration for PBXNativeTarget "BusBusWatchTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		AA0000000000000000000308 /* Build configuration list for PBXNativeTarget "BusBusTopShelf" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000309 /* Debug configuration for PBXNativeTarget "BusBusTopShelf" */,
+				AA000000000000000000030A /* Release configuration for PBXNativeTarget "BusBusTopShelf" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AA00000000000000000000A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.19.2;
+			};
+		};
+		AA0000000000000000000200 /* XCRemoteSwiftPackageReference "LoveLetterSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hayek/LoveLetterSDK";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
+		AA0000000000000000000210 /* XCRemoteSwiftPackageReference "HelpView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hayek/HelpView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA00000000000000000000A1 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA00000000000000000000A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		AA00000000000000000000A2 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA00000000000000000000A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		AA00000000000000000000A3 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA00000000000000000000A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		AA00000000000000000000A4 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA00000000000000000000A0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		AA0000000000000000000201 /* LoveLetterCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA0000000000000000000200 /* XCRemoteSwiftPackageReference "LoveLetterSDK" */;
+			productName = LoveLetterCore;
+		};
+		AA0000000000000000000202 /* LoveLetterUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA0000000000000000000200 /* XCRemoteSwiftPackageReference "LoveLetterSDK" */;
+			productName = LoveLetterUI;
+		};
+		AA0000000000000000000211 /* HelpView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA0000000000000000000210 /* XCRemoteSwiftPackageReference "HelpView" */;
+			productName = HelpView;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AA0000000000000000000070 /* Project object */;
+}

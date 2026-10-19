@@ -1,0 +1,36 @@
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+Packages/
+Package.resolved
+
+# macOS
+.DS_Store
+
+# API keys (see Config/Secrets.example.xcconfig)
+Config/Secrets.xcconfig
+# The in-app feedback token (see Config/Release.xcconfig, scripts/fill-secrets.sh)
+Config/Feedback.xcconfig
+
+# Firebase functions (see functions/.gitignore)
+functions/node_modules/
+functions/lib/
+.firebase/
+firebase-debug.log
+
+# App Store screenshots (scripts/screenshots.sh regenerates them)
+/screenshots/
+__pycache__/
+
+# Firebase config for the published app; a fork brings its own or builds without it.
+BusBus/GoogleService-Info.plist

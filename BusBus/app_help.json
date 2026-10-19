@@ -1,0 +1,164 @@
+{
+  "topics": [
+    "General",
+    "Getting Started",
+    "The Board",
+    "Wall Mode",
+    "Widgets & Apple Watch",
+    "Troubleshooting",
+    "Privacy & Security",
+    "Support"
+  ],
+  "faqs": [
+    {
+      "key": "what-is-my-bus-stop",
+      "title": "What is My Bus Stop?",
+      "details": "My Bus Stop turns your iPhone, iPad or Mac into a live arrivals board for the stop you use every day. Pick a stop and up to three lines, and the board shows how many minutes until the next bus, the one after it, and where each bus is along its route right now.",
+      "topic": "General"
+    },
+    {
+      "key": "where-does-it-work",
+      "title": "Where does My Bus Stop work?",
+      "details": "Israel, plus a growing list of cities and countries in Europe, North America and Asia — among them Norway, London, Vienna, Boston, New York City, Seattle, Hong Kong, Tokyo and Istanbul. The app picks the right region from your location, so there is nothing to set up. If your city isn't covered yet, send feedback and tell us where you ride.",
+      "topic": "General"
+    },
+    {
+      "key": "where-does-the-data-come-from",
+      "title": "Where do the arrival times come from?",
+      "details": "From the open, real-time data that transit agencies publish for their buses. The app reads it directly from each agency's service, and the credit for the data you're looking at is shown at the bottom of **Settings**.",
+      "topic": "General"
+    },
+    {
+      "key": "is-this-an-official-app",
+      "title": "Is this an official app of the bus operator?",
+      "details": "No. My Bus Stop is an independent app. It is not made or endorsed by any transit agency or bus operator; it only displays the public data they publish.",
+      "topic": "General"
+    },
+    {
+      "key": "how-do-i-choose-a-stop",
+      "title": "How do I choose my stop?",
+      "details": "When you open the app it lists the stops **nearby**. You can also search by stop name, stop code, street or line number, or open the map, move it to any area and tap **Search this area**. Tap a stop, then choose the lines you want to watch.",
+      "topic": "Getting Started"
+    },
+    {
+      "key": "how-many-lines-can-i-watch",
+      "title": "How many lines can I watch at once?",
+      "details": "Up to three lines per stop, so each one gets a clear route on the board. To change one, tap a selected line to swap it out for another.",
+      "topic": "Getting Started"
+    },
+    {
+      "key": "how-do-i-switch-stops",
+      "title": "How do I switch between stops?",
+      "details": "Every stop you set up is kept in **My stops** on the stop screen, so you can jump between home, work and school in one tap. Pin the ones you use most to keep them at the top. To remove one you no longer need, swipe it to the left, or tap **Edit**. From the board, tap the back arrow in the header to go back and change stop, or tap the stop name to change its lines.",
+      "topic": "Getting Started"
+    },
+    {
+      "key": "what-does-the-board-show",
+      "title": "What does the board show?",
+      "details": "A route map for each line you picked, with the buses on their way to your stop, and a readout with the **next** arrival, how many minutes away it is and how many stops it still has to go. **Then** shows the bus after it, and later buses are listed when there is room.",
+      "topic": "The Board"
+    },
+    {
+      "key": "live-or-scheduled",
+      "title": "What's the difference between LIVE and SCHEDULED?",
+      "details": "**LIVE** means the time comes from the bus's real position and the agency's live predictions. **SCHEDULED** means no live data is available for that bus yet, so the board shows the timetable instead. When the board hasn't heard from the feed for a while it marks the numbers as **Stale** and tells you when the last data arrived.",
+      "topic": "The Board"
+    },
+    {
+      "key": "what-happens-when-i-tap-a-bus",
+      "title": "What happens when I tap a bus?",
+      "details": "You get the details of that bus: its line, where it's heading and when it reaches your stop. In **Settings → Tap a bus** you choose how it appears: **Swap the readout** puts the tapped bus in place of the next arrival, and **Show beside** keeps the next arrival where it is and opens a card next to it. By default it follows wall mode — beside on a wall display, swap in your hand.",
+      "topic": "The Board"
+    },
+    {
+      "key": "why-no-buses-on-the-map",
+      "title": "Why don't I see buses moving on the map?",
+      "details": "In some regions the agency publishes arrival times but not the buses' positions, so the board shows the minutes without buses on the route. Elsewhere it can simply mean no bus is on the way right now, for example late at night, or that the next bus hasn't started sending its position yet.",
+      "topic": "The Board"
+    },
+    {
+      "key": "can-i-change-the-language",
+      "title": "Can I use the app in another language?",
+      "details": "Yes. The app follows your device's language by default, and **Settings → Language** lets you choose a different one for this app alone. The change applies right away, including right-to-left layout for Hebrew and Arabic. Your widgets and Apple Watch follow the language you choose.",
+      "topic": "The Board"
+    },
+    {
+      "key": "light-and-dark-appearance",
+      "title": "Is there a light theme?",
+      "details": "Yes. **Settings → Appearance** offers **System**, **Light** and **Dark**. In wall mode the board always stays dark, so it doesn't light up the room.",
+      "topic": "The Board"
+    },
+    {
+      "key": "what-is-wall-mode",
+      "title": "What is wall mode?",
+      "details": "Wall mode turns a spare iPad, iPhone or Mac into an always-on bus board for your hallway or front door. The screen stays awake, the board stays dark and dims at night, and it shifts by a few pixels every few minutes to protect the display. Turn it on in **Settings → Wall mode**. Tap anywhere on the board to bring up the settings button.",
+      "topic": "Wall Mode"
+    },
+    {
+      "key": "can-i-schedule-the-screen",
+      "title": "Can I choose when the wall screen stays on?",
+      "details": "Yes. With wall mode on, **Settings → Screen on** lets you pick the days and the hours (**From** and **Until**) the screen should stay awake — for example weekday mornings only. Leaving every day unselected means every day.",
+      "topic": "Wall Mode"
+    },
+    {
+      "key": "does-the-wall-board-recover",
+      "title": "Will the wall board recover by itself after a connection drop?",
+      "details": "Yes. The board keeps showing the last known times while it's offline, checks again automatically, and comes back on its own once the connection returns — no need to touch it. If the app is relaunched it opens straight onto the board.",
+      "topic": "Wall Mode"
+    },
+    {
+      "key": "how-do-i-add-a-widget",
+      "title": "How do I add a widget?",
+      "details": "Touch and hold your Home Screen, tap **Edit → Add Widget** and search for **My Bus Stop**. The **Next bus** widget comes in several sizes for the Home Screen, the Lock Screen, StandBy and the Mac desktop. To choose which stop it shows, touch and hold the widget, tap **Edit Widget** and pick a stop from **My stops**.",
+      "topic": "Widgets & Apple Watch"
+    },
+    {
+      "key": "widget-says-pick-a-stop",
+      "title": "Why does my widget say “Pick a stop in the app first”?",
+      "details": "The widget shows stops from **My stops**, and it's still empty. Open the app, choose a stop and lines once, and the widget picks it up. If you already have stops, edit the widget and select one.",
+      "topic": "Widgets & Apple Watch"
+    },
+    {
+      "key": "does-it-work-on-apple-watch",
+      "title": "Does My Bus Stop work on Apple Watch?",
+      "details": "Yes. The watch app lists the stops you saved on your iPhone and shows the next buses at each, and complications put the next bus on your watch face and in the Smart Stack. Stops are chosen on the iPhone; the watch follows the **My stops** list, colours and language on your iPhone. If the watch says to pick a stop on your iPhone first, open the app on the phone and set up a stop.",
+      "topic": "Widgets & Apple Watch"
+    },
+    {
+      "key": "nearby-stops-not-showing",
+      "title": "Why can't I see stops near me?",
+      "details": "The app needs your location to list nearby stops. If you declined, go to **Settings → Privacy & Security → Location Services → My Bus Stop** and choose **While Using the App**. You can always find a stop without location by searching or by moving the map and tapping **Search this area**.",
+      "topic": "Troubleshooting"
+    },
+    {
+      "key": "board-shows-stale-data",
+      "title": "Why does the board say “Stale” or “No connection”?",
+      "details": "The board couldn't get fresh data — usually because your device is offline or the agency's feed is slow. It keeps showing the last known board and tells you how old it is, and it refreshes by itself as soon as data flows again.",
+      "topic": "Troubleshooting"
+    },
+    {
+      "key": "live-data-is-paused",
+      "title": "Why does it say live data is paused or down?",
+      "details": "Sometimes an agency's feed breaks or starts sending wrong data. When that happens we pause live data for that region rather than show you misleading times, and work on a fix. The board comes back by itself once the feed is healthy — there's nothing you need to do.",
+      "topic": "Troubleshooting"
+    },
+    {
+      "key": "what-about-my-location",
+      "title": "What does the app do with my location?",
+      "details": "Your location is used only while the app is open, to pick your region and find stops near you. The app has no account and doesn't keep a record of where you go. To get arrival times, it sends the stop you chose to the transit data service for your region.",
+      "topic": "Privacy & Security"
+    },
+    {
+      "key": "does-the-app-collect-data",
+      "title": "Does the app collect any data about me?",
+      "details": "There's no sign-up and no account. The app sends anonymous crash reports and basic usage statistics so we can find bugs and see which features are used. Your stops and settings stay on your devices.",
+      "topic": "Privacy & Security"
+    },
+    {
+      "key": "how-do-i-send-feedback",
+      "title": "How do I report a problem or suggest a feature?",
+      "details": "Tap the speech bubble on the stop screen to send feedback. You can describe the problem, attach screenshots, and tell us about a city you'd like to see supported. Every message is read.",
+      "topic": "Support"
+    }
+  ]
+}

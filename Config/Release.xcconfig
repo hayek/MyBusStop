@@ -1,0 +1,7 @@
+// Settings for the BusBus app target's Release configuration.
+//
+// Release holds no transit API keys (see APIKeys.swift, KeyedEndpoint). Its one secret is the
+// in-app feedback token, which Debug includes too: Config/Feedback.xcconfig, gitignored and filled
+// by scripts/fill-secrets.sh. Optional, so a fresh clone still builds; without it the feedback
+// button is simply not shown (Feedback.swift).
+#include? "Feedback.xcconfig"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Release's half of Config/BusBus-Info.plist: everything but the transit API keys, which a
+	     Release build never carries (APIKeys.swift). The feedback token is the one exception. -->
+	<!-- busbus://setup?id=… opens a saved stop's board: where a widget sends a tap (WidgetDeepLink). -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.hayek.BusBus</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>busbus</string>
+			</array>
+		</dict>
+	</array>
+	<!-- The in-app feedback token, from the gitignored Config/Feedback.xcconfig (Feedback.swift). -->
+	<key>LoveLetterGitHubToken</key>
+	<string>$(LOVELETTER_GITHUB_TOKEN)</string>
+</dict>
+</plist>

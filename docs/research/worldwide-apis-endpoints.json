@@ -1,0 +1,818 @@
+{
+  "_meta": {
+    "researchDate": "2026-09-22",
+    "liveCallWindowUTC": "08:27-08:57",
+    "vantage": "Israel (some hosts geo-fenced; see notes)",
+    "fitLegend": {"FULL": "all protocol methods incl. live vehicle positions per line", "ARRIVALS-ONLY": "realtime ETAs at a stop, no vehicle positions"},
+    "fields": "endpoints.<method>.ran=true means the exampleURL returned HTTP 200 during this research (with the shown key or keyless); ran=false means documented but not executed. 'wave' is the suggested release wave from worldwide-apis.md section 3. 'method'/'body'/'headers' are given where a GET is not enough. Replace KEY/ID/SIG placeholders.",
+    "companion": "docs/research/worldwide-apis.md"
+  },
+  "providers": [
+    {
+      "providerId": "mbta",
+      "countries": ["US"], "cities": ["Boston", "Cambridge", "Somerville"],
+      "baseURL": "https://api-v3.mbta.com/",
+      "auth": "none", "keySignupURL": "https://api-v3.mbta.com/",
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api-v3.mbta.com/stops/64", "ran": true, "fields": "data.id (public stop number), data.attributes.name|latitude|longitude|municipality; no free-text search"},
+        "linesAtStop": {"exampleURL": "https://api-v3.mbta.com/routes?filter%5Bstop%5D=64&fields%5Broute%5D=short_name,long_name,direction_destinations,type", "ran": true, "fields": "data[].id, attributes.short_name|long_name|direction_destinations[]|type"},
+        "routePattern": {"exampleURL": "https://api-v3.mbta.com/stops?filter%5Broute%5D=1&filter%5Bdirection_id%5D=0&fields%5Bstop%5D=name,latitude,longitude,platform_code", "ran": true, "fields": "data[] in sequence order: id, attributes.name|latitude|longitude; variants via /route_patterns?filter[route]=1&include=representative_trip.stops"},
+        "vehicles": {"exampleURL": "https://api-v3.mbta.com/vehicles?filter%5Broute%5D=1&include=trip&fields%5Bvehicle%5D=latitude,longitude,bearing,updated_at,current_status,direction_id,current_stop_sequence", "ran": true, "fields": "data[].id, attributes.latitude|longitude|bearing|updated_at|current_status|current_stop_sequence|direction_id, relationships.trip.data.id, relationships.stop.data.id, included[].attributes.headsign"},
+        "arrivals": {"exampleURL": "https://api-v3.mbta.com/predictions?filter%5Bstop%5D=64&filter%5Broute%5D=1&include=vehicle&sort=arrival_time&fields%5Bprediction%5D=arrival_time,departure_time,direction_id,status,schedule_relationship", "ran": true, "fields": "data[].attributes.arrival_time|departure_time|status|schedule_relationship; scheduled via /schedules?filter[stop]=64&filter[route]=1&filter[min_time]=08:00&filter[max_time]=10:00"},
+        "stopsNearby": {"exampleURL": "https://api-v3.mbta.com/stops?filter%5Blatitude%5D=42.3736&filter%5Blongitude%5D=-71.1190&filter%5Bradius%5D=0.005&filter%5Broute_type%5D=3&include=route&fields%5Bstop%5D=name,latitude,longitude", "ran": true, "fields": "data[].id, attributes.name|latitude|longitude; included routes"}
+      },
+      "fit": "FULL",
+      "rateLimit": "20 req/min keyless (x-ratelimit-* headers); 1000 req/min with free key",
+      "attribution": "Clearly acknowledge MassDOT as the provider of the Data (MassDOT Developers License Agreement); no MassDOT/MBTA logos",
+      "notes": "Vehicle updated_at was 16 s old. Percent-encode [] in URLs."
+    },
+    {
+      "providerId": "metrotransit-nextrip",
+      "countries": ["US"], "cities": ["Minneapolis", "Saint Paul"],
+      "baseURL": "https://svc.metrotransit.org/nextrip/",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://svc.metrotransit.org/nextrip/17976", "ran": true, "fields": "stops[].stop_id|latitude|longitude|description (lookup by public stop number only)"},
+        "linesAtStop": {"exampleURL": "https://svc.metrotransit.org/nextrip/17976", "ran": true, "fields": "departures[].route_id|route_short_name|direction_text|description (derived)"},
+        "routePattern": {"exampleURL": "https://svc.metrotransit.org/nextrip/stops/5/0", "ran": true, "fields": "[].place_code|description (ordered timepoints, no coords); directions via /nextrip/directions/5; routes via /nextrip/routes"},
+        "vehicles": {"exampleURL": "https://svc.metrotransit.org/nextrip/vehicles/5", "ran": true, "fields": "[].trip_id|direction_id|route_id|latitude|longitude|bearing|speed|location_time (0/0 when not on trip)"},
+        "arrivals": {"exampleURL": "https://svc.metrotransit.org/nextrip/5/0/56CH", "ran": true, "fields": "departures[].actual (isRealtime)|departure_time (epoch s)|departure_text|trip_id|route_id|description|schedule_relationship"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "not available"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published",
+      "attribution": "none published (no API-specific ToS located)",
+      "notes": "Full stop coordinates need static GTFS (https://svc.metrotransit.org/mtgtfs/gtfs.zip) or per-stop lookups."
+    },
+    {
+      "providerId": "carris-metropolitana",
+      "countries": ["PT"], "cities": ["Lisbon metropolitan area (15 municipalities, excl. Lisbon-city Carris)"],
+      "baseURL": "https://api.carrismetropolitana.pt",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.carrismetropolitana.pt/stops/060001", "ran": true, "fields": "{id,name,lat,lon,locality,municipality_name,lines[],patterns[]}; name search only via cached /v2/stops (6.8 MB)"},
+        "linesAtStop": {"exampleURL": "https://api.carrismetropolitana.pt/stops/140817", "ran": true, "fields": "lines[], patterns[]; /lines/{id} -> short_name,long_name,patterns[]"},
+        "routePattern": {"exampleURL": "https://api.carrismetropolitana.pt/v2/patterns/1001_0_1", "ran": true, "fields": "[0].path[].stop_id|stop_sequence, headsign, line_id, direction_id (v1 /patterns/{id} embeds stop name/lat/lon, 867 KB)"},
+        "vehicles": {"exampleURL": "https://api.carrismetropolitana.pt/v2/vehicles.pb", "ran": true, "fields": "GTFS-RT entity[].vehicle.trip.route_id|trip_id, position.latitude|longitude|bearing|speed, timestamp, stop_id, current_status (203 KB, all vehicles; line filter params ignored)"},
+        "arrivals": {"exampleURL": "https://api.carrismetropolitana.pt/v2/arrivals/by_stop/140817", "ran": true, "fields": "[].line_id|pattern_id|headsign|scheduled_arrival_unix|estimated_arrival_unix|observed_arrival_unix|vehicle_id|trip_id|stop_sequence"},
+        "stopsNearby": {"exampleURL": "https://api.carrismetropolitana.pt/v2/stops", "ran": true, "fields": "client-side from cached [].id|lat|lon|long_name|line_ids[] (6.8 MB)"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published",
+      "attribution": "Carris Metropolitana (open data; GTFS CC-BY-4.0)",
+      "notes": "arrivals/by_stop can take 2-7 s; vehicles.pb 203 KB every 20-30 s."
+    },
+    {
+      "providerId": "rennes-star",
+      "countries": ["FR"], "cities": ["Rennes"],
+      "baseURL": "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-bus-topologie-pointsarret-td/records?where=search(nom%2C%22Gare%22)&select=id%2Cnom%2Ccoordonnees%2Cnomcommune&limit=5", "ran": true, "fields": "results[].id|nom|coordonnees.lat|coordonnees.lon|nomcommune; code: where=id=\"9018\""},
+        "linesAtStop": {"exampleURL": "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-bus-topologie-dessertes-td/records?where=idarret%3D%221001%22&select=nomcourtligne%2Cidligne%2Cidparcours&limit=50", "ran": true, "fields": "results[].nomcourtligne|idligne|idparcours"},
+        "routePattern": {"exampleURL": "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-bus-topologie-dessertes-td/records?where=idparcours%3D%220001-B-3028-2844%22&order_by=ordre&limit=100", "ran": true, "fields": "results[].ordre|idarret|nomarret|stop_id; parcours list: tco-bus-topologie-parcours-td/records?where=nomcourtligne%3D%22C1%22 (type=Principal, sens)"},
+        "vehicles": {"exampleURL": "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-bus-vehicules-position-tr/records?where=nomcourtligne%3D%22C1%22&limit=20", "ran": true, "fields": "results[].idbus|nomcourtligne|sens|destination|coordonnees.lat|coordonnees.lon|ecartsecondes (no per-record ts); GTFS-RT alt https://proxy.transport.data.gouv.fr/resource/star-rennes-integration-gtfs-rt-vehicle-position (15 KB)"},
+        "arrivals": {"exampleURL": "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-bus-circulation-passages-tr/records?where=idarret%3D%221001%22&limit=3", "ran": true, "fields": "results[].nomcourtligne|sens|destination|arriveetheorique|arrivee|departtheorique|depart|idbus|precision ('Temps réel'|'Théorique')"},
+        "stopsNearby": {"exampleURL": "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-bus-topologie-pointsarret-td/records?where=within_distance(coordonnees%2Cgeom%27POINT(-1.6802%2048.1102)%27%2C300m)&select=id%2Cnom&limit=10", "ran": true, "fields": "results[].id|nom"}
+      },
+      "fit": "FULL",
+      "rateLimit": "Opendatasoft default (unpublished)",
+      "attribution": "Données STAR (Keolis Rennes) - ODbL",
+      "notes": "Opendatasoft Explore v2.1 adapter is reusable for STIB Brussels and IDFM referentials."
+    },
+    {
+      "providerId": "entur",
+      "countries": ["NO"], "cities": ["Bergen", "Trondheim", "Stavanger", "Kristiansand", "Tromsø", "Oslo (arrivals only)"],
+      "baseURL": "https://api.entur.io",
+      "auth": "none", "keySignupURL": null,
+      "headers": {"ET-Client-Name": "<company>-<app>"},
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.entur.io/geocoder/v1/autocomplete?text=Jernbanetorget&layers=venue&size=3&lang=no", "ran": true, "fields": "features[].properties.id|name|locality, geometry.coordinates[lon,lat]; no public stop codes"},
+        "linesAtStop": {"exampleURL": "https://api.entur.io/journey-planner/v3/graphql", "method": "POST", "body": "{\"query\":\"{stopPlace(id:\\\"NSR:StopPlace:58381\\\"){quays{id publicCode latitude longitude lines{id publicCode name transportMode authority{name}}}}}\"}", "ran": true, "fields": "data.stopPlace.quays[].lines[].id|publicCode|name|transportMode|authority.name"},
+        "routePattern": {"exampleURL": "https://api.entur.io/journey-planner/v3/graphql", "method": "POST", "body": "{\"query\":\"{line(id:\\\"RUT:Line:31\\\"){journeyPatterns{id name directionType quays{id name publicCode latitude longitude}}}}\"}", "ran": true, "fields": "data.line.journeyPatterns[].quays[] ordered"},
+        "vehicles": {"exampleURL": "https://api.entur.io/realtime/v2/vehicles/graphql", "method": "POST", "body": "{\"query\":\"{vehicles(lineRef:\\\"SKY:Line:4\\\",maxDataAge:\\\"PT2M\\\"){vehicleId location{latitude longitude} bearing lastUpdatedEpochSecond monitoredCall{stopPointRef order} progressBetweenStops{percentage}}}\"}", "ran": true, "fields": "data.vehicles[].location.latitude|longitude, lastUpdatedEpochSecond, bearing, monitoredCall.order|stopPointRef; RUT (Oslo) returns []"},
+        "arrivals": {"exampleURL": "https://api.entur.io/journey-planner/v3/graphql", "method": "POST", "body": "{\"query\":\"{quay(id:\\\"NSR:Quay:6423\\\"){estimatedCalls(numberOfDepartures:5,whiteListedModes:[bus]){realtime aimedArrivalTime expectedArrivalTime destinationDisplay{frontText} serviceJourney{id line{id publicCode}}}}}\"}", "ran": true, "fields": "data.quay.estimatedCalls[].expectedArrivalTime|aimedArrivalTime|realtime, serviceJourney.line.id"},
+        "stopsNearby": {"exampleURL": "https://api.entur.io/journey-planner/v3/graphql", "method": "POST", "body": "{\"query\":\"{nearest(latitude:59.9129,longitude:10.7504,maximumDistance:300,filterByPlaceTypes:[stopPlace],first:5){edges{node{distance place{... on StopPlace{id name latitude longitude quays{id publicCode lines{id publicCode transportMode}}}}}}}}\"}", "ran": true, "fields": "data.nearest.edges[].node.distance, node.place"}
+      },
+      "fit": "FULL",
+      "rateLimit": "unspecified; unidentified clients (no ET-Client-Name) are rate-limited",
+      "attribution": "Data: Entur (NLOD licence)",
+      "notes": "Oslo/Ruter has no vehicle positions -> ARRIVALS-ONLY there. Use maxDataAge to drop stale vehicles."
+    },
+    {
+      "providerId": "foli",
+      "countries": ["FI"], "cities": ["Turku"],
+      "baseURL": "https://data.foli.fi",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://data.foli.fi/gtfs/v0/20260916-095329/stops", "ran": true, "fields": "{stop_id:{stop_code,stop_name,stop_lat,stop_lon}} (225 KB; version from https://data.foli.fi/gtfs/v0/ .latest)"},
+        "linesAtStop": {"exampleURL": "https://data.foli.fi/siri/sm/1", "ran": true, "fields": "result[].lineref (upcoming lines)"},
+        "routePattern": {"exampleURL": "https://data.foli.fi/gtfs/v0/20260916-095329/stop_times/trip/00012157__1001020100", "ran": true, "fields": "[].stop_id|stop_sequence|arrival_time; trips via /gtfs/v0/{ver}/trips/route/1 -> trip_id|trip_headsign|direction_id"},
+        "vehicles": {"exampleURL": "https://data.foli.fi/siri/vm", "ran": true, "fields": "result.vehicles{vehicleref}.lineref|latitude|longitude|recordedattime|bearing|next_stoppointref|__tripref (fleet-wide ~228 KB; filter by lineref)"},
+        "arrivals": {"exampleURL": "https://data.foli.fi/siri/sm/1", "ran": true, "fields": "result[].lineref|aimedarrivaltime|expectedarrivaltime|monitored|vehicleref|destinationdisplay (epoch s)"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side from cached stops"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none stated",
+      "attribution": "Source: Turku region public transport operational and timetable data. Data maintained by City of Turku. Downloaded from data.foli.fi under CC BY 4.0.",
+      "notes": "Responses gzip-encoded. GTFS version path changes; resolve via /gtfs/v0/ first."
+    },
+    {
+      "providerId": "tampere-journeys",
+      "countries": ["FI"], "cities": ["Tampere"],
+      "baseURL": "https://data.itsfactory.fi/journeys/api/1",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://data.itsfactory.fi/journeys/api/1/stop-points?name=Keskustori", "ran": true, "fields": "body[].shortName (code)|name|location 'lat,lon'|municipality.name; by code: /stop-points/0001"},
+        "linesAtStop": {"exampleURL": "https://data.itsfactory.fi/journeys/api/1/stop-monitoring?stops=0864", "ran": true, "fields": "body['0864'][].lineRef (only en-route vehicles)"},
+        "routePattern": {"exampleURL": "https://data.itsfactory.fi/journeys/api/1/journey-patterns/0a4dc67ea1267b3db998f8a4c6962f46", "ran": true, "fields": "body[0].stopPoints[].shortName|name|location ordered; direction; ids via /journey-patterns?lineId=1 (1.5 MB, cache)"},
+        "vehicles": {"exampleURL": "https://data.itsfactory.fi/journeys/api/1/vehicle-activity?lineRef=1", "ran": true, "fields": "body[].recordedAtTime, monitoredVehicleJourney.vehicleLocation.latitude|longitude (strings), bearing, vehicleRef, directionRef, delay (ISO8601), onwardCalls[].stopPointRef|order|expectedArrivalTime"},
+        "arrivals": {"exampleURL": "https://data.itsfactory.fi/journeys/api/1/stop-monitoring?stops=0864", "ran": true, "fields": "body['0864'][].lineRef, call.aimedArrivalTime|expectedArrivalTime|vehicleAtStop|arrivalStatus"},
+        "stopsNearby": {"exampleURL": "https://data.itsfactory.fi/journeys/api/1/stop-points?location=61.4975,23.7615:300", "ran": true, "fields": "body[] (returned empty in test; semantics unclear)"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none documented",
+      "attribution": "Data: Tampere / ITS Factory Journeys API (CC BY 4.0)",
+      "notes": "recordedAtTime <= 1 s old; stop-monitoring lists en-route vehicles only."
+    },
+    {
+      "providerId": "mta-bustime-nyc",
+      "countries": ["US"], "cities": ["New York City"],
+      "baseURL": "https://bustime.mta.info/api/",
+      "auth": "free-key", "keySignupURL": "https://register.developer.obanyc.com/",
+      "wave": 2, "verified": "V (key=TEST)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://bustime.mta.info/api/where/stops-for-location.json?key=TEST&lat=40.7484&lon=-73.9857&radius=30000&query=401921", "ran": true, "fields": "data.stops[].id|code|name|lat|lon|routes[].id|shortName (note data.stops, not data.list; no search/stop endpoint)"},
+        "linesAtStop": {"exampleURL": "https://bustime.mta.info/api/where/stop/MTA_401921.json?key=TEST", "ran": true, "fields": "data.routes[].id|shortName|longName|description"},
+        "routePattern": {"exampleURL": "https://bustime.mta.info/api/where/stops-for-route/MTA%20NYCT_M15.json?key=TEST&includePolylines=false&version=2", "ran": true, "fields": "data.entry.stopGroupings[0].stopGroups[].name.name|stopIds[]; data.references.stops[]"},
+        "vehicles": {"exampleURL": "https://bustime.mta.info/api/siri/vehicle-monitoring.json?key=TEST&OperatorRef=MTA&LineRef=MTA%20NYCT_M15&VehicleMonitoringDetailLevel=normal", "ran": true, "fields": "Siri.ServiceDelivery.VehicleMonitoringDelivery[0].VehicleActivity[].RecordedAtTime, MonitoredVehicleJourney.VehicleRef|VehicleLocation.Latitude|Longitude|Bearing|DirectionRef|DestinationName|MonitoredCall.StopPointRef|ExpectedArrivalTime|Extensions.Distances.StopsFromCall (ran with DetailLevel=calls, 100 KB)"},
+        "arrivals": {"exampleURL": "https://bustime.mta.info/api/siri/stop-monitoring.json?key=TEST&OperatorRef=MTA&MonitoringRef=MTA_401921&LineRef=MTA%20NYCT_M15", "ran": true, "fields": "StopMonitoringDelivery[0].MonitoredStopVisit[].MonitoredVehicleJourney.MonitoredCall.ExpectedArrivalTime|AimedArrivalTime|Extensions.Distances (empty delivery at 04:44 local); scheduled: where/arrivals-and-departures-for-stop/MTA_401921.json"},
+        "stopsNearby": {"exampleURL": "https://bustime.mta.info/api/where/stops-for-location.json?key=TEST&lat=40.7484&lon=-73.9857&radius=300", "ran": true, "fields": "data.stops[].id|code|name|lat|lon|routes[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "unpublished; community: ~1 all-vehicle request/30 s per key, keys revoked for abuse",
+      "attribution": "MTA developer T&C: no implied MTA endorsement; disclose if data lag > 1 min",
+      "notes": "Keyless whole-city GTFS-RT https://gtfsrt.prod.obanyc.com/vehiclePositions is 69 KB overnight / ~600 KB daytime (too big). Confirm phone-direct use vs 'serve from your own server' clause."
+    },
+    {
+      "providerId": "wmata",
+      "countries": ["US"], "cities": ["Washington DC", "Arlington", "Bethesda", "Alexandria"],
+      "baseURL": "https://api.wmata.com/",
+      "auth": "free-key", "keySignupURL": "https://developer.wmata.com/",
+      "wave": 2, "verified": "V (sanctioned demo key)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://buseta.wmata.com/onebusaway-api-webapp/api/where/search/stop.json?key=TEST&input=Madison", "ran": true, "fields": "data.list[].id|code|name|lat|lon|routeIds[] (busETA OBA, undocumented); official jStops has no name search"},
+        "linesAtStop": {"exampleURL": "https://buseta.wmata.com/onebusaway-api-webapp/api/where/stop/1_21786.json?key=TEST", "ran": true, "fields": "data.entry.routeIds[]; official jStops Routes[]"},
+        "routePattern": {"exampleURL": "https://api.wmata.com/Bus.svc/json/jRouteDetails?RouteID=D10&api_key=e13626d03d8e4c03ac07f95541b3091b", "ran": true, "fields": "Direction0|Direction1.TripHeadsign, Stops[].StopID|Name|Lat|Lon (ordered)"},
+        "vehicles": {"exampleURL": "https://api.wmata.com/Bus.svc/json/jBusPositions?RouteID=D10&api_key=e13626d03d8e4c03ac07f95541b3091b", "ran": true, "fields": "BusPositions[].VehicleID|Lat|Lon|DateTime|TripID|DirectionNum|TripHeadsign|Deviation"},
+        "arrivals": {"exampleURL": "https://api.wmata.com/NextBusService.svc/json/jPredictions?StopID=1001141&api_key=e13626d03d8e4c03ac07f95541b3091b", "ran": true, "fields": "Predictions[].RouteID|DirectionText|Minutes|VehicleID|TripID (no scheduled; busETA OBA arrivals-and-departures-for-stop/1_21786.json gives predicted+scheduled)"},
+        "stopsNearby": {"exampleURL": "https://api.wmata.com/Bus.svc/json/jStops?Lat=38.8977&Lon=-77.0365&Radius=300&api_key=e13626d03d8e4c03ac07f95541b3091b", "ran": true, "fields": "Stops[].StopID|Name|Lat|Lon|Routes[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "Default tier ~10 calls/s, 50,000/day [I]; demo key for limited testing only",
+      "attribution": "none mandated; no implied WMATA endorsement",
+      "notes": "Licence expects the developer's own key inside the app. busETA OBA (https://buseta.wmata.com/onebusaway-api-webapp/api/where/) answered every OBA method with key=TEST."
+    },
+    {
+      "providerId": "oba-pugetsound",
+      "countries": ["US"], "cities": ["Seattle", "Tacoma", "Everett", "Bellevue"],
+      "baseURL": "https://api.pugetsound.onebusaway.org/api/where/",
+      "auth": "free-key", "keySignupURL": "mailto:oba_api_key@soundtransit.org",
+      "wave": 2, "verified": "V (key=TEST, throttled)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.pugetsound.onebusaway.org/api/where/search/stop.json?key=TEST&input=Pike", "ran": true, "fields": "data.list[].id|code|name|lat|lon|routeIds[]; code: stops-for-location.json?lat&lon&radius=20000&query=75403"},
+        "linesAtStop": {"exampleURL": "https://api.pugetsound.onebusaway.org/api/where/stop/1_75403.json?key=TEST", "ran": true, "fields": "data.entry.routeIds[]; data.references.routes[].id|shortName|description"},
+        "routePattern": {"exampleURL": "https://api.pugetsound.onebusaway.org/api/where/stops-for-route/1_100224.json?key=TEST&includePolylines=false", "ran": true, "fields": "data.entry.stopGroupings[0].stopGroups[].name.name|stopIds[]; references.stops[]"},
+        "vehicles": {"exampleURL": "https://api.pugetsound.onebusaway.org/api/where/trips-for-route/1_100224.json?key=TEST&includeStatus=true&includeSchedule=false", "ran": true, "fields": "data.list[].tripId, status.position.lat|lon, status.orientation|lastUpdateTime|vehicleId|distanceAlongTrip|totalDistanceAlongTrip|nextStop|predicted"},
+        "arrivals": {"exampleURL": "https://api.pugetsound.onebusaway.org/api/where/arrivals-and-departures-for-stop/1_29236.json?key=TEST&minutesAfter=60", "ran": true, "fields": "data.entry.arrivalsAndDepartures[].routeId|tripHeadsign|predictedArrivalTime|scheduledArrivalTime|predicted|tripStatus.position"},
+        "stopsNearby": {"exampleURL": "https://api.pugetsound.onebusaway.org/api/where/stops-for-location.json?key=TEST&lat=47.6097&lon=-122.3331&radius=300", "ran": true, "fields": "data.list[].id|code|name|lat|lon|routeIds[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "unpublished; TEST key 429s after ~3 rapid calls",
+      "attribution": "Data provided AS IS by King County Metro / Sound Transit / Pierce Transit / Community Transit (optional wording); usage metrics on request",
+      "notes": "Same adapter serves busETA (DC), MTA NYC discovery, Tampa/San Diego/Adelaide (keys), BKK Budapest (OBA-shaped). regions list: https://regions.onebusaway.org/regions-v3.json"
+    },
+    {
+      "providerId": "umo-nextbus-ttc",
+      "countries": ["CA", "US"], "cities": ["Toronto", "Laval", "Cape Cod", "Glendale", "Omnitrans (San Bernardino)"],
+      "baseURL": "https://retro.umoiq.com/service/publicJSONFeed",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://retro.umoiq.com/service/publicJSONFeed?command=routeConfig&a=ttc&r=501&terse=true", "ran": true, "fields": "route.stop[].stopId (public number)|tag|title|lat|lon (per route; no global name search)"},
+        "linesAtStop": {"exampleURL": "https://retro.umoiq.com/service/publicJSONFeed?command=predictions&a=ttc&stopId=6916", "ran": true, "fields": "predictions[].routeTag|routeTitle|stopTitle"},
+        "routePattern": {"exampleURL": "https://retro.umoiq.com/service/publicJSONFeed?command=routeConfig&a=ttc&r=501&terse=true", "ran": true, "fields": "route.direction[].tag|title|name|stop[].tag (ordered) joined to route.stop[]"},
+        "vehicles": {"exampleURL": "https://retro.umoiq.com/service/publicJSONFeed?command=vehicleLocations&a=ttc&r=501&t=0", "ran": true, "fields": "vehicle[].id|lat|lon|heading|speedKmHr|dirTag|secsSinceReport|predictable; lastTime.time"},
+        "arrivals": {"exampleURL": "https://retro.umoiq.com/service/publicJSONFeed?command=predictions&a=ttc&r=501&s=7813", "ran": true, "fields": "predictions.direction[].prediction[].epochTime|seconds|minutes|vehicle|tripTag|dirTag (no scheduled time)"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "not available"}
+      },
+      "fit": "FULL",
+      "rateLimit": "2 MB per 20 s per IP; poll at most every 10 s; 5 predictions per stop",
+      "attribution": "retain copyright notice: 'All data copyright Toronto Transit Commission 2026' / Umo IQ",
+      "notes": "Unsupported legacy feed (17 agencies left; agencyList); Umo may terminate at any time. TTC official GTFS-RT (bustime.ttc.ca/gtfsrt/vehicles) unreachable from vantage."
+    },
+    {
+      "providerId": "septa",
+      "countries": ["US"], "cities": ["Philadelphia"],
+      "baseURL": "https://www3.septa.org/api/",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://www3.septa.org/api/locations/get_locations.php?lat=39.9526&lon=-75.1652&radius=0.3&type=bus_stops", "ran": true, "fields": "[].location_id (stop id)|location_name|location_lat|location_lon (geo only)"},
+        "linesAtStop": {"exampleURL": "https://www3.septa.org/api/Stops/index.php?req1=47", "ran": true, "fields": "per-route stops [].stopid|stopname|lat|lng - invert to get lines at a stop"},
+        "routePattern": {"exampleURL": "https://www3.septa.org/api/v2/stops/?route_id=47", "ran": true, "fields": "[].route_id|direction_id|stop_id|stop_name|stop_sequence|stop_lat|stop_lon"},
+        "vehicles": {"exampleURL": "https://www3.septa.org/api/v2/trips/?route_id=47", "ran": true, "fields": "[].vehicle_id|trip_id|direction_id|trip_headsign|lat|lon|heading|delay|next_stop_id|next_stop_sequence|trip_completion; legacy TransitView/index.php?route=47 -> bus[].lat|lng|VehicleID|trip|destination|late|next_stop_id|timestamp"},
+        "arrivals": {"exampleURL": "https://www3.septa.org/api/BusSchedules/index.php?req1=736&req2=47&req3=i&req6=5", "ran": true, "fields": "{route:[{trip_id,date,DateCalender,Direction,DirectionDesc}]} scheduled (HTTP 501 with valid JSON body!); realtime ETA = schedule + TransitView 'late'"},
+        "stopsNearby": {"exampleURL": "https://www3.septa.org/api/locations/get_locations.php?lat=39.961286&lon=-75.149782&radius=0.1&type=bus_stops", "ran": true, "fields": "[].location_id|location_name|location_lat|location_lon"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published",
+      "attribution": "SEPTA License Agreement: no commercial use of SEPTA trademarks/copyrighted materials (ambiguous for data) - get written confirmation",
+      "notes": "v2 endpoints need trailing slash; BusSchedules returns HTTP 501 on success."
+    },
+    {
+      "providerId": "poznan-ztm",
+      "countries": ["PL"], "cities": ["Poznań"],
+      "baseURL": "https://www.peka.poznan.pl/vm/method.vm",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://www.peka.poznan.pl/vm/method.vm?ts=1758530000000", "method": "POST", "body": "method=getStopPoints&p0={\"pattern\":\"Rondo Kaponiera\"}", "ran": true, "fields": "success[].symbol|name (Content-Type application/x-www-form-urlencoded)"},
+        "linesAtStop": {"exampleURL": "https://www.peka.poznan.pl/vm/method.vm?ts=1758530000000", "method": "POST", "body": "method=getBollardsByStopPoint&p0={\"name\":\"Rondo Kaponiera\"}", "ran": true, "fields": "success.bollards[].bollard.symbol|tag|name, directions[].lineName|direction|returnVariant"},
+        "routePattern": {"exampleURL": "https://www.peka.poznan.pl/vm/method.vm?ts=1758530000000", "method": "POST", "body": "method=getBollardsByLine&p0={\"name\":\"12\"}", "ran": true, "fields": "success.directions[].direction, bollards[].symbol|orderNo|name|tag"},
+        "vehicles": {"exampleURL": "https://www.ztm.poznan.pl/pl/dla-deweloperow/getGtfsRtFile?file=vehicle_positions.pb", "ran": true, "fields": "GTFS-RT entity[].vehicle.trip.route_id (= line name)|trip_id, position.latitude|longitude, timestamp, current_stop_sequence (29 KB all vehicles)"},
+        "arrivals": {"exampleURL": "https://www.peka.poznan.pl/vm/method.vm?ts=1758530000000", "method": "POST", "body": "method=getTimes&p0={\"symbol\":\"RKAP71\"}", "ran": true, "fields": "success.times[].line|direction|minutes|departure (ISO)|realTime (bool)|onStopPoint"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "not offered"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published",
+      "attribution": "ZTM Poznań / PEKA (Zasady korzystania - open data)",
+      "notes": "ts = epoch ms. trip_updates.pb also 29 KB."
+    },
+    {
+      "providerId": "gdansk-ztm",
+      "countries": ["PL"], "cities": ["Gdańsk", "Gdynia", "Sopot"],
+      "baseURL": "https://ckan2.multimediagdansk.pl",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/d3e96eb6-25ad-4d6c-8651-b1eb39155945/download/stopsingdansk.json", "ran": true, "fields": "static 679 KB {date:{stops[].stopId|stopCode|stopName|stopDesc|stopLat|stopLon}} (full stops.json 9.8 MB)"},
+        "linesAtStop": {"exampleURL": "https://ckan2.multimediagdansk.pl/departures?stopId=1001", "ran": true, "fields": "departures[].routeShortName; routes list https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/22313c56-5acf-41c7-a5fd-dc5dc72b3851/download/routes.json (218 KB)"},
+        "routePattern": {"exampleURL": "https://ckan.multimediagdansk.pl/dataset/c24aa637-3619-4dc2-a171-a23eec8f2172/resource/3115d29d-b763-4af5-93f6-763b835967d6/download/stopsintrip.json", "ran": true, "fields": "31.8 MB static {date:{stopsInTrip[].routeId|tripId|stopId|stopSequence}} - daily cache only, not per-query"},
+        "vehicles": {"exampleURL": "https://ckan2.multimediagdansk.pl/gpsPositions?v=2", "ran": true, "fields": "lastUpdate; vehicles[].routeShortName|routeId|tripId|headsign|vehicleId|lat|lon|speed|direction|delay|generated (88 KB all vehicles)"},
+        "arrivals": {"exampleURL": "https://ckan2.multimediagdansk.pl/departures?stopId=1001", "ran": true, "fields": "departures[].routeShortName|headsign|theoreticalTime|estimatedTime|delayInSeconds|status (REALTIME|SCHEDULED)|vehicleId|tripId"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side from cached stops"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published",
+      "attribution": "Otwarte dane ZTM w Gdańsku - CC BY 4.0",
+      "notes": "Ordered pattern needs the 31.8 MB daily dump (or infer from consecutive departures)."
+    },
+    {
+      "providerId": "iett-istanbul",
+      "countries": ["TR"], "cities": ["Istanbul"],
+      "baseURL": "https://api.ibb.gov.tr/iett",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.ibb.gov.tr/iett/UlasimAnaVeri/HatDurakGuzergah.asmx", "method": "POST", "body": "SOAP 1.1, SOAPAction http://tempuri.org/GetDurak_json, <DurakKodu>900152</DurakKodu>", "ran": true, "fields": "[].SDURAKKODU|SDURAKADI|KOORDINAT 'POINT (lon lat)'|ILCEADI|SYON; empty DurakKodu -> all 15159 stops (3.7 MB) for name search"},
+        "linesAtStop": {"exampleURL": "https://api.ibb.gov.tr/iett/UlasimAnaVeri/HatDurakGuzergah.asmx", "method": "POST", "body": "SOAPAction http://tempuri.org/GetHat_json, <HatKodu></HatKodu>", "ran": true, "fields": "all lines [].SHATKODU|SHATADI (106 KB); no stop->lines op: invert cached DurakDetay_GYY"},
+        "routePattern": {"exampleURL": "https://api.ibb.gov.tr/iett/ibb/ibb.asmx", "method": "POST", "body": "SOAPAction http://tempuri.org/DurakDetay_GYY, <hat_kodu>34</hat_kodu>", "ran": true, "fields": "XML Table[].HATKODU|YON (G|D)|SIRANO|DURAKKODU|DURAKADI|XKOORDINATI (lon)|YKOORDINATI (lat)"},
+        "vehicles": {"exampleURL": "https://api.ibb.gov.tr/iett/FiloDurum/SeferGerceklesme.asmx", "method": "POST", "body": "SOAPAction http://tempuri.org/GetHatOtoKonum_json, <HatKodu>500T</HatKodu>", "ran": true, "fields": "[].kapino|enlem (lat)|boylam (lon)|hatkodu|guzergahkodu|yon|son_konum_zamani (Europe/Istanbul local)|yakinDurakKodu"},
+        "arrivals": {"exampleURL": "https://api.ibb.gov.tr/iett/UlasimAnaVeri/PlanlananSeferSaati.asmx", "method": "POST", "body": "SOAPAction http://tempuri.org/GetPlanlananSeferSaati_json, <HatKodu>34</HatKodu>", "ran": true, "fields": "scheduled terminal departures [].SGUZERAH|SYON|SGUNTIPI|DT; no live ETA op -> derive from vehicles+pattern"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side from cached stop dump"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published",
+      "attribution": "İBB Açık Veri Portalı / İETT - İBB Open Data Licence v1.0 (CC BY 4.0 compatible)",
+      "notes": "SOAP 1.1 POST; positions ~30 s fresh; ETAs computed on device."
+    },
+    {
+      "providerId": "tallinn",
+      "countries": ["EE"], "cities": ["Tallinn"],
+      "baseURL": "https://transport.tallinn.ee",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://transport.tallinn.ee/data/stops.txt", "ran": true, "fields": "';' CSV, delta-encoded (empty cell = previous row): ID;SiriID;Lat(x1e6);Lng(x1e6);Stops;Name;...;Area;City (208 KB)"},
+        "linesAtStop": {"exampleURL": "https://transport.tallinn.ee/data/routes.txt", "ran": true, "fields": "RouteNum;...;Transport;...;RouteName;...;RouteStops (ordered stop IDs) - lines at stop = routes containing the stop ID (362 KB)"},
+        "routePattern": {"exampleURL": "https://transport.tallinn.ee/data/routes.txt", "ran": true, "fields": "RouteStops comma list, one row per variant"},
+        "vehicles": {"exampleURL": "https://transport.tallinn.ee/gps.txt", "ran": true, "fields": "CSV: type(1 trolley,2 bus,3 tram),line,lon x1e6,lat x1e6,speed,heading,vehicleNo,vehicleType,?,destination (21 KB; no timestamp; Last-Modified ~5 s)"},
+        "arrivals": {"exampleURL": "https://transport.tallinn.ee/siri-stop-departures.php?stopid=1100&time=1", "ran": true, "fields": "CSV rows: transport,route,expectedSecOfDay,scheduledSecOfDay,destination,secondsUntil,flag; header carries server secOfDay"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side from stops.txt"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none stated (Cloudflare cached)",
+      "attribution": "Data: Tallinna Transpordiamet / Tallinn City Government open data (CC BY 4.0 default)",
+      "notes": "Same 'Pikas' CSV format as stops.lt -> one adapter."
+    },
+    {
+      "providerId": "stops-lt-vilnius",
+      "countries": ["LT"], "cities": ["Vilnius", "Kaunas"],
+      "baseURL": "https://www.stops.lt/vilnius",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://www.stops.lt/vilnius/vilnius/stops.txt", "ran": true, "fields": "ID;Direction;Lat;Lng;Stops;Name;... (delta-encoded, 110 KB)"},
+        "linesAtStop": {"exampleURL": "https://www.stops.lt/vilnius/vilnius/routes.txt", "ran": true, "fields": "RouteNum;...;Transport;...;RouteStops;...;TripIds (480 KB)"},
+        "routePattern": {"exampleURL": "https://www.stops.lt/vilnius/vilnius/routes.txt", "ran": true, "fields": "RouteStops ordered"},
+        "vehicles": {"exampleURL": "https://www.stops.lt/vilnius/gps.txt", "ran": true, "fields": "CSV: type,line,lon x1e6,lat x1e6,speed,heading,...,vehicle (23 KB)"},
+        "arrivals": {"exampleURL": "https://www.stops.lt/vilnius/departures2.php?stopid=3906", "ran": true, "fields": "CSV: type,route,tag,timeSec,vehicle,destination,... (flaky: one call took 19.9 s)"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none stated; Cloudflare 522 seen on gps_full.txt",
+      "attribution": "Data: JUDU (Susisiekimo paslaugos), Vilnius city open data",
+      "notes": "FLAKY: gps.txt returned 200 (23 KB) at 08:40Z and Cloudflare 522 on a re-check at 09:05Z; health checks must tolerate 522. Kaunas: https://www.stops.lt/kaunas/gps_full.txt (200, has header); stops/routes timed out."
+    },
+    {
+      "providerId": "bustimes",
+      "countries": ["GB"], "cities": ["Great Britain (BODS aggregate)", "Northern Ireland"],
+      "baseURL": "https://bustimes.org",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://bustimes.org/api/stops/?atco_code=490011094T", "ran": true, "fields": "results[].atco_code|naptan_code|common_name|long_name|location[lon,lat]|line_names[]; also ?naptan_code=73241; ?search= is fuzzy/poor"},
+        "linesAtStop": {"exampleURL": "https://bustimes.org/stops.json?ymax=51.49&xmax=-0.12&ymin=51.48&xmin=-0.13", "ran": true, "fields": "features[].properties.name|url (/stops/{atco})|services[]; or line_names[] on /api/stops/"},
+        "routePattern": {"exampleURL": "https://bustimes.org/api/trips/652938130/", "ran": true, "fields": "times[].stop.atco_code|name|location, aimed_departure_time, expected_departure_time; trip_id from vehicles.json; services via /api/services/?search=S4"},
+        "vehicles": {"exampleURL": "https://bustimes.org/vehicles.json?service=69424", "ran": true, "fields": "[].coordinates[lon,lat]|heading|datetime|trip_id|journey_id|destination|service.line_name"},
+        "arrivals": {"exampleURL": "https://bustimes.org/stops/490011094T/departures?format=json", "ran": false, "fields": "Cloudflare JS challenge blocks non-browser clients; derive from vehicle + aimed times"},
+        "stopsNearby": {"exampleURL": "https://bustimes.org/stops.json?ymax=51.49&xmax=-0.12&ymin=51.48&xmin=-0.13", "ran": true, "fields": "GeoJSON features[].geometry.coordinates, properties.services[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "unpublished; volunteer-run, Cloudflare in front",
+      "attribution": "Data via bustimes.org; Contains public sector information licensed under the Open Government Licence v3.0 (DfT BODS)",
+      "notes": "Unofficial aggregator, no API ToS/SLA; robots.txt disallows /api/. Trip ids are ephemeral - look them up fresh each session."
+    },
+    {
+      "providerId": "tfl",
+      "countries": ["GB"], "cities": ["London"],
+      "baseURL": "https://api.tfl.gov.uk",
+      "auth": "none", "keySignupURL": "https://api-portal.tfl.gov.uk/",
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.tfl.gov.uk/StopPoint/Search/Vauxhall?modes=bus", "ran": true, "fields": "matches[].id|name|lat|lon; code: /StopPoint/Sms/{code} (302 -> /StopPoint/{naptanId})"},
+        "linesAtStop": {"exampleURL": "https://api.tfl.gov.uk/StopPoint/490011094T", "ran": true, "fields": "lines[].id, lineGroup[].lineIdentifier[], commonName, lat, lon, smsCode"},
+        "routePattern": {"exampleURL": "https://api.tfl.gov.uk/Line/87/Route/Sequence/outbound", "ran": true, "fields": "stopPointSequences[].stopPoint[].id|name|lat|lon; orderedLineRoutes[].naptanIds[]"},
+        "vehicles": {"exampleURL": "https://api.tfl.gov.uk/Vehicle/LTZ1501/Arrivals", "ran": true, "fields": "NO GPS; per-vehicle predictions [].naptanId|timeToStation|expectedArrival -> progress proxy; Line/87/Vehicles = 404; Line/87/Arrivals (247 KB) lists every prediction on the line"},
+        "arrivals": {"exampleURL": "https://api.tfl.gov.uk/StopPoint/490011094T/Arrivals", "ran": true, "fields": "[].lineName|vehicleId|expectedArrival|timeToStation|timestamp|direction|towards (no scheduled time)"},
+        "stopsNearby": {"exampleURL": "https://api.tfl.gov.uk/StopPoint?lat=51.4857&lon=-0.1233&stopTypes=NaptanPublicBusCoachTram&radius=300", "ran": true, "fields": "stopPoints[].id|commonName|lat|lon|lines[].id"}
+      },
+      "fit": "ARRIVALS-ONLY",
+      "rateLimit": "50 req/min anonymous; 500 req/min with free app_key",
+      "attribution": "Powered by TfL Open Data; Contains OS data © Crown copyright and database rights 2016",
+      "notes": "Official; commercial use allowed."
+    },
+    {
+      "providerId": "jp-odpt-toei",
+      "countries": ["JP"], "cities": ["Tokyo (Toei Bus)"],
+      "baseURL": "https://api-public.odpt.org/api/v4/",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api-public.odpt.org/api/v4/odpt:BusstopPole?dc:title=%E6%9D%B1%E4%BA%AC%E9%A7%85%E4%B8%B8%E3%81%AE%E5%86%85%E5%8D%97%E5%8F%A3", "ran": true, "fields": "[].owl:sameAs|dc:title|title.en|geo:lat|geo:long|odpt:busstopPoleNumber|odpt:busroutePattern[] (exact title match; full list 5.6 MB)"},
+        "linesAtStop": {"exampleURL": "https://api-public.odpt.org/api/v4/odpt:BusstopPole?dc:title=%E6%9D%B1%E4%BA%AC%E9%A7%85%E4%B8%B8%E3%81%AE%E5%86%85%E5%8D%97%E5%8F%A3", "ran": true, "fields": "odpt:busroutePattern[] ids (route code embedded, e.g. Toei.T04.72301.1)"},
+        "routePattern": {"exampleURL": "https://api-public.odpt.org/api/v4/odpt:BusroutePattern?odpt:busroute=odpt.Busroute:Toei.To07", "ran": true, "fields": "[].owl:sameAs|dc:title|odpt:direction|odpt:busstopPoleOrder[].odpt:index|odpt:busstopPole|odpt:note"},
+        "vehicles": {"exampleURL": "https://api-public.odpt.org/api/v4/gtfs/realtime/ToeiBus", "ran": true, "fields": "GTFS-RT 41 KB: entity[].vehicle.position.latitude|longitude, timestamp, trip.route_id, current_stop_sequence, stop_id, vehicle.label; JSON alt odpt:Bus?odpt:busroute=odpt.Busroute:Toei.To07 -> odpt:fromBusstopPole|odpt:toBusstopPole|odpt:busroutePattern|dc:date"},
+        "arrivals": {"exampleURL": "https://api-public.odpt.org/api/v4/odpt:BusstopPoleTimetable?odpt:busstopPole=odpt.BusstopPole:Toei.KinshichoStation.442.2&odpt:busroute=odpt.Busroute:Toei.To07", "ran": true, "fields": "scheduled only: odpt:busstopPoleTimetableObject[].odpt:departureTime|odpt:destinationSign|odpt:busroutePattern per odpt:calendar"},
+        "stopsNearby": {"exampleURL": "https://api-public.odpt.org/api/v4/places/odpt:BusstopPole?lon=139.767&lat=35.681&radius=300", "ran": true, "fields": "same pole objects"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published",
+      "attribution": "Bureau of Transportation, Tokyo Metropolitan Government / Association for Open Data of Public Transportation (CC BY 4.0)",
+      "notes": "Only Toei on the token-free host. Arrivals timetable-only (derive ETA from vehicle progress). Positions every 30 s."
+    },
+    {
+      "providerId": "hk-mtrbus",
+      "countries": ["HK"], "cities": ["Hong Kong (New Territories MTR Bus routes)"],
+      "baseURL": "https://rt.data.gov.hk/v1/transport/mtr/bus/",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://opendata.mtr.com.hk/data/mtr_bus_stops.csv", "ran": true, "fields": "CSV ROUTE_ID,DIRECTION,STATION_SEQNO,STATION_ID,STATION_LATITUDE,STATION_LONGITUDE,STATION_NAME_ENG (client-side search)"},
+        "linesAtStop": {"exampleURL": "https://opendata.mtr.com.hk/data/mtr_bus_routes.csv", "ran": true, "fields": "ROUTE_ID,ROUTE_NAME_ENG; join with stops CSV by STATION_ID"},
+        "routePattern": {"exampleURL": "https://opendata.mtr.com.hk/data/mtr_bus_stops.csv", "ran": true, "fields": "rows with ROUTE_ID+DIRECTION ordered by STATION_SEQNO"},
+        "vehicles": {"exampleURL": "https://rt.data.gov.hk/v1/transport/mtr/bus/getSchedule", "method": "POST", "body": "{\"language\":\"en\",\"routeName\":\"K12\"}", "ran": true, "fields": "busStop[].bus[].busId|busLocation.latitude|busLocation.longitude|isScheduled ('0'=live)|lineRef; routeStatusTime"},
+        "arrivals": {"exampleURL": "https://rt.data.gov.hk/v1/transport/mtr/bus/getSchedule", "method": "POST", "body": "{\"language\":\"en\",\"routeName\":\"K12\"}", "ran": true, "fields": "busStop[busStopId].bus[].arrivalTimeInSecond|departureTimeInSecond|isScheduled|isDelayed"},
+        "stopsNearby": {"exampleURL": "https://opendata.mtr.com.hk/data/mtr_bus_stops.csv", "ran": true, "fields": "client-side haversine over CSV"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published; app refresh 60 s",
+      "attribution": "Data from DATA.GOV.HK / MTR Corporation",
+      "notes": "Small network (~20 routes). Response per route 14-81 KB."
+    },
+    {
+      "providerId": "hk-kmb",
+      "countries": ["HK"], "cities": ["Hong Kong"],
+      "baseURL": "https://data.etabus.gov.hk/v1/transport/kmb/",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://data.etabus.gov.hk/v1/transport/kmb/stop/9ED7E93749ABAE67", "ran": true, "fields": "data.stop|name_en|name_tc|lat|long; full list /stop (1.19 MB; cache; client-side search)"},
+        "linesAtStop": {"exampleURL": "https://data.etabus.gov.hk/v1/transport/kmb/stop-eta/9ED7E93749ABAE67", "ran": true, "fields": "data[].route|dir|service_type|dest_en (live) or /route-stop full list 3 MB"},
+        "routePattern": {"exampleURL": "https://data.etabus.gov.hk/v1/transport/kmb/route-stop/1/outbound/1", "ran": true, "fields": "data[].seq|stop"},
+        "vehicles": {"exampleURL": "https://data.etabus.gov.hk/v1/transport/kmb/route-eta/1/1", "ran": true, "fields": "NO GPS; route-eta gives eta per stop seq to infer position"},
+        "arrivals": {"exampleURL": "https://data.etabus.gov.hk/v1/transport/kmb/eta/9ED7E93749ABAE67/1/1", "ran": true, "fields": "data[].eta (ISO+08:00)|eta_seq|rmk_en ('Scheduled Bus' = not realtime)|data_timestamp|dest_en"},
+        "stopsNearby": {"exampleURL": "https://data.etabus.gov.hk/v1/transport/kmb/stop", "ran": true, "fields": "client-side over cached list"}
+      },
+      "fit": "ARRIVALS-ONLY",
+      "rateLimit": "none published; data ~30 s",
+      "attribution": "Kowloon Motor Bus / DATA.GOV.HK",
+      "notes": "Includes LWB. Sibling keyless ARRIVALS-ONLY APIs: Citybus https://rt.data.gov.hk/v2/transport/citybus/eta/ctb/002403/1, GMB https://data.etagmb.gov.hk/eta/route-stop/2006408/1/2, NLB https://rt.data.gov.hk/v2/transport/nlb/stop.php?action=estimatedArrivals&routeId=1&stopId=1&language=en (all ran 200)."
+    },
+    {
+      "providerId": "hk-citybus",
+      "countries": ["HK"], "cities": ["Hong Kong"],
+      "baseURL": "https://rt.data.gov.hk/v2/transport/citybus/",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://rt.data.gov.hk/v2/transport/citybus/stop/002403", "ran": true, "fields": "data.stop|name_en|lat|long (no all-stops endpoint; build from route-stop)"},
+        "linesAtStop": {"exampleURL": "https://rt.data.gov.hk/v2/transport/citybus/route/ctb", "ran": true, "fields": "data[].route|orig_en|dest_en; join via route-stop (slow first hit, 16 s)"},
+        "routePattern": {"exampleURL": "https://rt.data.gov.hk/v2/transport/citybus/route-stop/ctb/1/outbound", "ran": true, "fields": "data[].seq|stop|dir"},
+        "vehicles": {"exampleURL": null, "ran": false, "fields": "none"},
+        "arrivals": {"exampleURL": "https://rt.data.gov.hk/v2/transport/citybus/eta/ctb/002403/1", "ran": true, "fields": "data[].eta|eta_seq|dir|seq|dest_en|rmk_en|data_timestamp"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side"}
+      },
+      "fit": "ARRIVALS-ONLY",
+      "rateLimit": "none published",
+      "attribution": "Citybus Limited / DATA.GOV.HK",
+      "notes": ""
+    },
+    {
+      "providerId": "sg-lta-datamall",
+      "countries": ["SG"], "cities": ["Singapore"],
+      "baseURL": "https://datamall2.mytransport.sg/ltaodataservice/",
+      "auth": "free-key", "keySignupURL": "https://datamall.lta.gov.sg/content/datamall/en/request-for-api.html",
+      "headers": {"AccountKey": "KEY"},
+      "wave": 2, "verified": "docs (keyless -> 404/401 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=0", "ran": false, "fields": "value[].BusStopCode|RoadName|Description|Latitude|Longitude (500/page; cache ~11 pages; client-side search)"},
+        "linesAtStop": {"exampleURL": "https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival?BusStopCode=83139", "ran": false, "fields": "Services[].ServiceNo|Operator (live) or BusRoutes filtered by BusStopCode"},
+        "routePattern": {"exampleURL": "https://datamall2.mytransport.sg/ltaodataservice/BusRoutes?$skip=0", "ran": false, "fields": "value[].ServiceNo|Direction|StopSequence|BusStopCode|Distance (26k rows paged 500; cache)"},
+        "vehicles": {"exampleURL": "https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival?BusStopCode=83139&ServiceNo=15", "ran": false, "fields": "Services[].NextBus|NextBus2|NextBus3.Latitude|Longitude (GPS of the 3 approaching buses)|Load|Type"},
+        "arrivals": {"exampleURL": "https://datamall2.mytransport.sg/ltaodataservice/v3/BusArrival?BusStopCode=83139&ServiceNo=15", "ran": false, "fields": "NextBus*.EstimatedArrival (ISO+08:00)|Monitored (1=realtime,0=schedule)|OriginCode|DestinationCode"},
+        "stopsNearby": {"exampleURL": "https://datamall2.mytransport.sg/ltaodataservice/BusStops?$skip=0", "ran": false, "fields": "client-side over cached list"}
+      },
+      "fit": "FULL",
+      "rateLimit": "10,000,000 calls/day per ToS; BusArrival refresh 20 s",
+      "attribution": "Contains information from LTA DataMall accessed on <date> which is made available under the terms of the Singapore Open Data Licence version 1.0",
+      "notes": "Key e-mailed instantly. Positions only for the next 3 buses per stop+service (fits the app's use case)."
+    },
+    {
+      "providerId": "tw-tdx",
+      "countries": ["TW"], "cities": ["Taipei", "NewTaipei", "Taoyuan", "Taichung", "Tainan", "Kaohsiung", "all counties"],
+      "baseURL": "https://tdx.transportdata.tw/api/basic/",
+      "auth": "free-key", "keySignupURL": "https://tdx.transportdata.tw/register",
+      "wave": 2, "verified": "docs (swagger read; keyless -> 401 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://tdx.transportdata.tw/api/basic/v2/Bus/Stop/City/Taipei?$filter=contains(StopName/Zh_tw,'%E5%8F%B0%E5%8C%97%E8%BB%8A%E7%AB%99')&$format=JSON", "ran": false, "fields": "[].StopUID|StopID|StopName.Zh_tw|StopName.En|StopPosition.PositionLat|PositionLon"},
+        "linesAtStop": {"exampleURL": "https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$filter=Stops/any(s:s/StopUID eq 'TPE10')&$format=JSON", "ran": false, "fields": "[].RouteUID|RouteName.Zh_tw|SubRouteName|Direction"},
+        "routePattern": {"exampleURL": "https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei/307?$format=JSON", "ran": false, "fields": "[].Direction, Stops[].StopSequence|StopUID|StopName|StopPosition"},
+        "vehicles": {"exampleURL": "https://tdx.transportdata.tw/api/basic/v2/Bus/RealTimeByFrequency/City/Taipei/307?$format=JSON", "ran": false, "fields": "[].PlateNumb|RouteUID|Direction|BusPosition.PositionLat|PositionLon|Azimuth|Speed|GPSTime|BusStatus"},
+        "arrivals": {"exampleURL": "https://tdx.transportdata.tw/api/basic/v2/Bus/EstimatedTimeOfArrival/City/Taipei/307?$format=JSON", "ran": false, "fields": "[].StopUID|StopSequence|Direction|EstimateTime (s)|StopStatus|NextBusTime|PlateNumb|DataTime"},
+        "stopsNearby": {"exampleURL": "https://tdx.transportdata.tw/api/basic/v2/Bus/Stop/City/Taipei?$spatialFilter=nearby(25.0478,121.5170,500)&$format=JSON", "ran": false, "fields": "same as searchStops"}
+      },
+      "fit": "FULL",
+      "rateLimit": "50 req/s per source IP with key; anonymous browser-only 50/day",
+      "attribution": "資料介接「交通部TDX平臺」 + TDX logo; licence 政府資料開放授權條款 v1",
+      "notes": "OAuth2 client_credentials token from https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token (400 invalid_client with dummy creds verified). Client secret would ship in app."
+    },
+    {
+      "providerId": "au-tfnsw",
+      "countries": ["AU"], "cities": ["Sydney", "Newcastle", "Wollongong", "regional NSW"],
+      "baseURL": "https://api.transport.nsw.gov.au/v1/",
+      "auth": "free-key", "keySignupURL": "https://opendata.transport.nsw.gov.au/data/user/register",
+      "headers": {"Authorization": "apikey KEY"},
+      "wave": 2, "verified": "docs (keyless -> 401 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.transport.nsw.gov.au/v1/tp/stop_finder?outputFormat=rapidJSON&type_sf=any&name_sf=Central&coordOutputFormat=EPSG:4326&anyMaxSizeHitList=10&TfNSWSF=true", "ran": false, "fields": "locations[].id|name|coord[lat,lon]|type|assignedStops[]"},
+        "linesAtStop": {"exampleURL": "https://api.transport.nsw.gov.au/v1/tp/departure_mon?outputFormat=rapidJSON&coordOutputFormat=EPSG:4326&mode=direct&type_dm=stop&name_dm=200060&depArrMacro=dep&TfNSWDM=true", "ran": false, "fields": "stopEvents[].transportation.id|number|destination.name|operator.name (dedupe)"},
+        "routePattern": {"exampleURL": "https://api.transport.nsw.gov.au/v1/gtfs/realtime/buses/SMBSC001", "ran": false, "fields": "TripUpdates stop_time_update[].stop_id|stop_sequence per trip; or Trip Planner leg stopSequence[]"},
+        "vehicles": {"exampleURL": "https://api.transport.nsw.gov.au/v1/gtfs/vehiclepos/buses/SMBSC001", "ran": false, "fields": "GTFS-RT entity[].vehicle.position.latitude|longitude|bearing, timestamp, trip.trip_id|route_id (per-operator feed; size unmeasured)"},
+        "arrivals": {"exampleURL": "https://api.transport.nsw.gov.au/v1/tp/departure_mon?outputFormat=rapidJSON&coordOutputFormat=EPSG:4326&mode=direct&type_dm=stop&name_dm=200060&depArrMacro=dep&TfNSWDM=true", "ran": false, "fields": "stopEvents[].departureTimePlanned|departureTimeEstimated|isRealtimeControlled|transportation.number|destination.name"},
+        "stopsNearby": {"exampleURL": "https://api.transport.nsw.gov.au/v1/tp/coord?outputFormat=rapidJSON&coord=151.2070:-33.8688:EPSG:4326&inclFilter=1&type_1=BUS_POINT&radius_1=500&coordOutputFormat=EPSG:4326", "ran": false, "fields": "locations[].id|name|coord|properties.distance"}
+      },
+      "fit": "FULL",
+      "rateLimit": "60,000 calls/day, 5 req/s per key (Bronze default)",
+      "attribution": "Transport for NSW (CC BY 4.0)",
+      "notes": "EFA rapidJSON dialect -> share adapter with efa-bw. API Basics page advises proxying keys for browser apps (guidance, not licence)."
+    },
+    {
+      "providerId": "au-ptv",
+      "countries": ["AU"], "cities": ["Melbourne", "regional Victoria"],
+      "baseURL": "https://timetableapi.ptv.vic.gov.au",
+      "auth": "free-key", "keySignupURL": "mailto:APIKeyRequest@ptv.vic.gov.au",
+      "wave": 4, "verified": "docs (swagger read; keyless -> 403 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://timetableapi.ptv.vic.gov.au/v3/search/Flinders?route_types=2&devid=ID&signature=SIG", "ran": false, "fields": "stops[].stop_id|stop_name|stop_suburb|stop_latitude|stop_longitude|routes[]; match_stop_by_gtfs_stop_id=true for codes"},
+        "linesAtStop": {"exampleURL": "https://timetableapi.ptv.vic.gov.au/v3/stops/1071/route_type/2?devid=ID&signature=SIG", "ran": false, "fields": "stop.routes[].route_id|route_number|route_name"},
+        "routePattern": {"exampleURL": "https://timetableapi.ptv.vic.gov.au/v3/stops/route/8000/route_type/2?direction_id=1&devid=ID&signature=SIG", "ran": false, "fields": "stops[].stop_id|stop_name|stop_sequence|stop_latitude|stop_longitude"},
+        "vehicles": {"exampleURL": "https://timetableapi.ptv.vic.gov.au/v3/runs/route/8000/route_type/2?expand=VehiclePosition&devid=ID&signature=SIG", "ran": false, "fields": "runs[].run_ref|direction_id|vehicle_position.latitude|longitude|bearing|datetime_utc"},
+        "arrivals": {"exampleURL": "https://timetableapi.ptv.vic.gov.au/v3/departures/route_type/2/stop/1071/route/8000?max_results=5&devid=ID&signature=SIG", "ran": false, "fields": "departures[].scheduled_departure_utc|estimated_departure_utc|run_ref|direction_id"},
+        "stopsNearby": {"exampleURL": "https://timetableapi.ptv.vic.gov.au/v3/stops/location/-37.8136,144.9631?route_types=2&max_distance=500&devid=ID&signature=SIG", "ran": false, "fields": "stops[].stop_id|stop_name|stop_distance|stop_latitude|stop_longitude|routes[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published (fair use)",
+      "attribution": "Source: Licensed from Public Transport Victoria under a Creative Commons Attribution 4.0 International Licence",
+      "notes": "Key by e-mail (not instant). HMAC-SHA1 signature over path+query computed client-side => key inherently in app."
+    },
+    {
+      "providerId": "nz-metlink",
+      "countries": ["NZ"], "cities": ["Wellington region"],
+      "baseURL": "https://api.opendata.metlink.org.nz/v1",
+      "auth": "free-key", "keySignupURL": "https://opendata.metlink.org.nz/",
+      "headers": {"x-api-key": "KEY"},
+      "wave": 2, "verified": "docs/community (keyless -> 403 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.opendata.metlink.org.nz/v1/gtfs/stops?stop_id=5000", "ran": false, "fields": "[].stop_id (=4-digit public code)|stop_code|stop_name|stop_lat|stop_lon; name search client-side over full list"},
+        "linesAtStop": {"exampleURL": "https://api.opendata.metlink.org.nz/v1/gtfs/routes?stop_id=5000", "ran": false, "fields": "[].route_id|route_short_name|route_long_name"},
+        "routePattern": {"exampleURL": "https://api.opendata.metlink.org.nz/v1/gtfs/stop_times?trip_id=TRIP", "ran": false, "fields": "[].stop_sequence|stop_id|arrival_time; trips via /v1/gtfs/trips?route_id="},
+        "vehicles": {"exampleURL": "https://api.opendata.metlink.org.nz/v1/gtfs-rt/vehiclepositions", "ran": false, "fields": "JSON entity[].vehicle.position.latitude|longitude|bearing, timestamp, trip.trip_id|route_id (whole region; filter client-side)"},
+        "arrivals": {"exampleURL": "https://api.opendata.metlink.org.nz/v1/stop-predictions?stop_id=5000", "ran": false, "fields": "departures[].service_id|direction|destination.name|arrival.aimed|arrival.expected|departure.aimed|departure.expected|status|monitored|vehicle_id"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side"}
+      },
+      "fit": "FULL",
+      "rateLimit": "not published",
+      "attribution": "Greater Wellington Regional Council / Metlink (CC BY 4.0)",
+      "notes": "Portal is a JS SPA; endpoint shapes from community client code; sizes unverified."
+    },
+    {
+      "providerId": "nz-at",
+      "countries": ["NZ"], "cities": ["Auckland"],
+      "baseURL": "https://api.at.govt.nz/",
+      "auth": "free-key", "keySignupURL": "https://dev-portal.at.govt.nz/",
+      "headers": {"Ocp-Apim-Subscription-Key": "KEY"},
+      "wave": 4, "verified": "docs (keyless -> 401 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.at.govt.nz/gtfs/v3/stops?filter%5Bstop_code%5D=7149", "ran": false, "fields": "data[].attributes.stop_id|stop_code|stop_name|stop_lat|stop_lon (JSON:API)"},
+        "linesAtStop": {"exampleURL": "https://api.at.govt.nz/gtfs/v3/stops/7149-2c1a4c6d/stoptrips?filter%5Bdate%5D=2026-09-22&filter%5Bstart_hour%5D=8&filter%5Bhour_range%5D=2", "ran": false, "fields": "data[].attributes.route_id|trip_headsign|trip_id"},
+        "routePattern": {"exampleURL": "https://api.at.govt.nz/gtfs/v3/trips/{trip_id}/stops", "ran": false, "fields": "data[].attributes.stop_sequence|stop_id|stop_name|stop_lat|stop_lon"},
+        "vehicles": {"exampleURL": "https://api.at.govt.nz/realtime/legacy/vehiclelocations?tripid=TRIP1,TRIP2", "ran": false, "fields": "response.entity[].vehicle.position.latitude|longitude|bearing, timestamp, trip.trip_id|route_id, vehicle.id"},
+        "arrivals": {"exampleURL": "https://api.at.govt.nz/realtime/legacy/tripupdates?tripid=TRIP1", "ran": false, "fields": "entity[].trip_update.stop_time_update[].stop_sequence|stop_id|arrival.time|arrival.delay"},
+        "stopsNearby": {"exampleURL": "https://api.at.govt.nz/gtfs/v3/stops?filter%5Blat%5D=-36.8485&filter%5Blng%5D=174.7633&filter%5Bdistance%5D=500", "ran": false, "fields": "same as searchStops (filter names partly inferred)"}
+      },
+      "fit": "FULL",
+      "rateLimit": "600 calls/min and 35,000 calls/week per key",
+      "attribution": "Auckland Transport (CC BY 4.0)",
+      "notes": "Weekly quota too small for a shipped shared key; needs an arrangement with AT."
+    },
+    {
+      "providerId": "golemio-prague",
+      "countries": ["CZ"], "cities": ["Prague (PID region)"],
+      "baseURL": "https://api.golemio.cz",
+      "auth": "free-key", "keySignupURL": "https://api.golemio.cz/api-keys",
+      "headers": {"X-Access-Token": "KEY"},
+      "wave": 4, "verified": "docs (OpenAPI read; keyless -> 401 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.golemio.cz/v2/gtfs/stops?names=And%C4%9Bl", "ran": false, "fields": "features[].properties.stop_id|stop_name, geometry.coordinates"},
+        "linesAtStop": {"exampleURL": "https://api.golemio.cz/v2/pid/departureboards?ids=U703Z1P", "ran": false, "fields": "departures[].route.short_name (derived)"},
+        "routePattern": {"exampleURL": "https://api.golemio.cz/v2/gtfs/trips/{trip_id}?includeStopTimes=true", "ran": false, "fields": "stop_times[].stop_id|stop_sequence"},
+        "vehicles": {"exampleURL": "https://api.golemio.cz/v2/vehiclepositions?routeShortName=176&includePositions=true", "ran": false, "fields": "features[].geometry.coordinates, properties.last_position.origin_timestamp|delay|bearing|next_stop.id, properties.trip.gtfs.route_short_name|trip_id"},
+        "arrivals": {"exampleURL": "https://api.golemio.cz/v2/pid/departureboards?ids=U703Z1P&minutesAfter=30", "ran": false, "fields": "departures[].arrival_timestamp.predicted|scheduled, delay.is_available|seconds, route.short_name, trip.headsign"},
+        "stopsNearby": {"exampleURL": "https://api.golemio.cz/v2/gtfs/stops?latlng=50.07,14.40&range=300", "ran": false, "fields": "features[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "20 requests / 8 s per API key (shared key = bottleneck)",
+      "attribution": "Golemio / PID (ROPID)",
+      "notes": "Per-key rate limit makes an embedded key impractical beyond a handful of users."
+    },
+    {
+      "providerId": "bkk-budapest",
+      "countries": ["HU"], "cities": ["Budapest"],
+      "baseURL": "https://futar.bkk.hu/api/query/v1/ws/otp/api/where",
+      "auth": "free-key", "keySignupURL": "https://opendata.bkk.hu",
+      "wave": 2, "verified": "docs (OpenAPI read; keyless -> 401 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://futar.bkk.hu/api/query/v1/ws/otp/api/where/search.json?query=De%C3%A1k&key=KEY", "ran": false, "fields": "data.entry.stopIds[], data.references.stops{id,name,lat,lon,routeIds[]}"},
+        "linesAtStop": {"exampleURL": "https://futar.bkk.hu/api/query/v1/ws/otp/api/where/stops-for-location.json?lat=47.4979&lon=19.0402&radius=300&key=KEY", "ran": false, "fields": "data.list[].id|name|lat|lon|routeIds[]"},
+        "routePattern": {"exampleURL": "https://futar.bkk.hu/api/query/v1/ws/otp/api/where/route-details.json?routeId=BKK_0070&key=KEY", "ran": false, "fields": "data.entry.variants[].headsign|direction|stopIds[]"},
+        "vehicles": {"exampleURL": "https://futar.bkk.hu/api/query/v1/ws/otp/api/where/vehicles-for-route.json?routeId=BKK_0070&key=KEY", "ran": false, "fields": "data.list[].location.lat|lon, bearing, routeId, tripId, stopId, stopSequence, lastUpdateTime"},
+        "arrivals": {"exampleURL": "https://futar.bkk.hu/api/query/v1/ws/otp/api/where/arrivals-and-departures-for-stop.json?stopId=BKK_F00965&minutesAfter=30&key=KEY", "ran": false, "fields": "data.entry.stopTimes[].predictedArrivalTime|arrivalTime|departureTime|tripId|stopHeadsign"},
+        "stopsNearby": {"exampleURL": "https://futar.bkk.hu/api/query/v1/ws/otp/api/where/stops-for-location.json?lat=47.4979&lon=19.0402&radius=300&key=KEY", "ran": false, "fields": "data.list[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "refresh >= 5 s; BKK may limit keys with abnormal load; business use -> bkk@bkk.hu",
+      "attribution": "BKK OpenData (Futár)",
+      "notes": "OBA-shaped -> reuse the OneBusAway adapter with key query param."
+    },
+    {
+      "providerId": "emt-madrid",
+      "countries": ["ES"], "cities": ["Madrid"],
+      "baseURL": "https://openapi.emtmadrid.es",
+      "auth": "free-key", "keySignupURL": "https://mobilitylabs.emtmadrid.es/",
+      "wave": 4, "verified": "docs (login endpoint alive verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://openapi.emtmadrid.es/v1/transport/busemtmad/stops/72/detail/", "ran": false, "fields": "data[].stops[].stop|name|geometry.coordinates|lines[]"},
+        "linesAtStop": {"exampleURL": "https://openapi.emtmadrid.es/v1/transport/busemtmad/stops/72/detail/", "ran": false, "fields": "data[].stops[].dataLine[].line|label|direction|nameA|nameB"},
+        "routePattern": {"exampleURL": "https://openapi.emtmadrid.es/v1/transport/busemtmad/lines/27/stops/1/", "ran": false, "fields": "data[].stops[].stop|name|geometry.coordinates ordered per direction 1|2"},
+        "vehicles": {"exampleURL": "https://openapi.emtmadrid.es/v2/transport/busemtmad/stops/72/arrives/27/", "method": "POST", "body": "{\"cultureInfo\":\"EN\",\"Text_StopRequired_YN\":\"Y\",\"Text_EstimationsRequired_YN\":\"Y\",\"Text_IncidencesRequired_YN\":\"N\"}", "ran": false, "fields": "data[0].Arrive[].bus|line|geometry.coordinates|DistanceBus|estimateArrive (positions of buses approaching the stop)"},
+        "arrivals": {"exampleURL": "https://openapi.emtmadrid.es/v2/transport/busemtmad/stops/72/arrives/27/", "method": "POST", "body": "{\"cultureInfo\":\"EN\",\"Text_StopRequired_YN\":\"Y\",\"Text_EstimationsRequired_YN\":\"Y\",\"Text_IncidencesRequired_YN\":\"N\"}", "ran": false, "fields": "Arrive[].estimateArrive (s)|destination"},
+        "stopsNearby": {"exampleURL": "https://openapi.emtmadrid.es/v2/transport/busemtmad/stops/arroundxy/-3.70/40.42/300/", "ran": false, "fields": "data[].stopId|stopName|geometry|lines[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "daily quota per account; own X-ClientId/passKey raises it",
+      "attribution": "EMT Madrid / MobilityLabs",
+      "notes": "Login GET /v1/mobilitylabs/user/login/ with email/password (or X-ClientId/passKey) headers -> accessToken header. Use per-app credentials."
+    },
+    {
+      "providerId": "tranzy",
+      "countries": ["RO", "MD"], "cities": ["Cluj-Napoca", "Iași", "Botoșani", "Chișinău"],
+      "baseURL": "https://api.tranzy.ai/v1/opendata",
+      "auth": "free-key", "keySignupURL": "https://apps.tranzy.ai/accounts",
+      "headers": {"X-API-KEY": "KEY", "X-Agency-Id": "2"},
+      "wave": 4, "verified": "docs (keyless -> 403 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.tranzy.ai/v1/opendata/stops", "ran": false, "fields": "[].stop_id|stop_name|stop_lat|stop_lon (whole table)"},
+        "linesAtStop": {"exampleURL": "https://api.tranzy.ai/v1/opendata/stop_times", "ran": false, "fields": "join stop_times -> trips -> routes on device"},
+        "routePattern": {"exampleURL": "https://api.tranzy.ai/v1/opendata/stop_times", "ran": false, "fields": "[].trip_id|stop_id|stop_sequence"},
+        "vehicles": {"exampleURL": "https://api.tranzy.ai/v1/opendata/vehicles", "ran": false, "fields": "[].id|label|latitude|longitude|timestamp|route_id|trip_id|speed (refresh 20 s)"},
+        "arrivals": {"exampleURL": null, "ran": false, "fields": "no ETA endpoint; derive from vehicles + stop_times"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side"}
+      },
+      "fit": "FULL",
+      "rateLimit": "not published",
+      "attribution": "tranzy.ai open data / CTP Cluj-Napoca - attribution + share-alike",
+      "notes": "GTFS-shaped JSON tables; stop_times may be large."
+    },
+    {
+      "providerId": "sptrans-olhovivo",
+      "countries": ["BR"], "cities": ["São Paulo"],
+      "baseURL": "https://api.olhovivo.sptrans.com.br/v2.1",
+      "auth": "free-key", "keySignupURL": "https://www.sptrans.com.br/desenvolvedores/cadastro-desenvolvedores/",
+      "wave": 4, "verified": "docs (keyless -> 401 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.olhovivo.sptrans.com.br/v2.1/Parada/Buscar?termosBusca=Afonso", "ran": false, "fields": "[].cp (id)|np (name)|ed (address)|py (lat)|px (lon) - corridor stops only"},
+        "linesAtStop": {"exampleURL": "https://api.olhovivo.sptrans.com.br/v2.1/Previsao/Parada?codigoParada=340015329", "ran": false, "fields": "p.l[].cl (lineId)|c (shortName)|lt0 (headsign)|sl (direction) - only lines with active predictions"},
+        "routePattern": {"exampleURL": "https://api.olhovivo.sptrans.com.br/v2.1/Parada/BuscarParadasPorLinha?codigoLinha=1273", "ran": false, "fields": "[].cp|np|py|px (order not guaranteed; corridor stops)"},
+        "vehicles": {"exampleURL": "https://api.olhovivo.sptrans.com.br/v2.1/Posicao/Linha?codigoLinha=1273", "ran": false, "fields": "vs[].p (vehicle)|ta (ISO8601 UTC)|py (lat)|px (lon)"},
+        "arrivals": {"exampleURL": "https://api.olhovivo.sptrans.com.br/v2.1/Previsao?codigoParada=340015329&codigoLinha=1273", "ran": false, "fields": "p.l[].vs[].t (HH:MM expected)|ta|py|px; no scheduled"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "not available"}
+      },
+      "fit": "FULL",
+      "rateLimit": "undocumented",
+      "attribution": "none published",
+      "notes": "Auth: POST /Login/Autenticar?token=KEY then cookie apiCredentials. Bundle SPTrans GTFS (mdb-8, CC-BY-4.0) for full stops/patterns."
+    },
+    {
+      "providerId": "cta-bustracker",
+      "countries": ["US"], "cities": ["Chicago"],
+      "baseURL": "https://www.ctabustracker.com/bustime/api/v3/",
+      "auth": "free-key", "keySignupURL": "https://www.transitchicago.com/developers/bustracker/",
+      "wave": 2, "verified": "docs (keyless -> 200 'No API access key supplied' verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://www.ctabustracker.com/bustime/api/v3/getstops?rt=22&dir=Northbound&format=json&key=KEY", "ran": false, "fields": "bustime-response.stops[].stpid|stpnm|lat|lon (per route/direction; no name search)"},
+        "linesAtStop": {"exampleURL": "https://www.ctabustracker.com/bustime/api/v3/getpredictions?stpid=1234&format=json&key=KEY", "ran": false, "fields": "bustime-response.prd[].rt|rtdir|des (derived)"},
+        "routePattern": {"exampleURL": "https://www.ctabustracker.com/bustime/api/v3/getpatterns?rt=22&format=json&key=KEY", "ran": false, "fields": "bustime-response.ptr[].pid|rtdir|pt[].seq|typ|stpid|stpnm|lat|lon"},
+        "vehicles": {"exampleURL": "https://www.ctabustracker.com/bustime/api/v3/getvehicles?rt=22&format=json&key=KEY", "ran": false, "fields": "bustime-response.vehicle[].vid|tmstmp|lat|lon|hdg|pid|pdist|rt|des|tatripid|dly"},
+        "arrivals": {"exampleURL": "https://www.ctabustracker.com/bustime/api/v3/getpredictions?stpid=1234&rt=22&format=json&key=KEY", "ran": false, "fields": "bustime-response.prd[].prdtm|prdctdn|tmstmp|vid|dstp|rt|des|dly (no scheduled time)"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "not available"}
+      },
+      "fit": "FULL",
+      "rateLimit": "100,000 transactions/day per key by default; data refresh ~30 s",
+      "attribution": "optional: 'Data provided by Chicago Transit Authority'; no implied CTA affiliation",
+      "notes": "Same Clever Devices BusTime v3 shape at Pittsburgh PRT, Milwaukee MCTS, NJ Transit, Madison (all key-gated; several 10k/day)."
+    },
+    {
+      "providerId": "trimet",
+      "countries": ["US"], "cities": ["Portland OR"],
+      "baseURL": "https://developer.trimet.org/ws/",
+      "auth": "free-key", "keySignupURL": "https://developer.trimet.org/appid/registration/",
+      "wave": 2, "verified": "docs (keyless -> 403 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://developer.trimet.org/ws/V1/stops?locIDs=8334&json=true&appID=KEY", "ran": false, "fields": "resultSet.location[].locid|desc|lat|lng|dir"},
+        "linesAtStop": {"exampleURL": "https://developer.trimet.org/ws/V1/stops?locIDs=8334&showRoutes=true&json=true&appID=KEY", "ran": false, "fields": "resultSet.location[].route[].route|desc|dir[]"},
+        "routePattern": {"exampleURL": "https://developer.trimet.org/ws/V1/routeConfig?routes=20&stops=true&dir=true&json=true&appID=KEY", "ran": false, "fields": "resultSet.route[].dir[].desc, stop[].locid|desc|lat|lng|seq"},
+        "vehicles": {"exampleURL": "https://developer.trimet.org/ws/v2/vehicles?routes=20&appID=KEY", "ran": false, "fields": "resultSet.vehicle[].vehicleID|latitude|longitude|bearing|time|tripID|routeNumber|direction|nextLocID|nextStopSeq"},
+        "arrivals": {"exampleURL": "https://developer.trimet.org/ws/V1/arrivals?locIDs=8334&json=true&appID=KEY", "ran": false, "fields": "resultSet.arrival[].route|estimated|scheduled|status|vehicleID|blockPosition.lat|lng"},
+        "stopsNearby": {"exampleURL": "https://developer.trimet.org/ws/V1/stops?ll=45.52,-122.68&meters=300&json=true&appID=KEY", "ran": false, "fields": "resultSet.location[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "none published",
+      "attribution": "none mandated (Terms of Use grant licence to use/redistribute/display Data; no TriMet marks)",
+      "notes": ""
+    },
+    {
+      "providerId": "hsl-digitransit",
+      "countries": ["FI"], "cities": ["Helsinki", "Espoo", "Vantaa"],
+      "baseURL": "https://api.digitransit.fi/routing/v2/hsl/gtfs/v1",
+      "auth": "free-key", "keySignupURL": "https://portal-api.digitransit.fi/",
+      "headers": {"digitransit-subscription-key": "KEY"},
+      "wave": 2, "verified": "V (MQTT keyless); routing keyless -> 401 verified",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://api.digitransit.fi/routing/v2/hsl/gtfs/v1", "method": "POST", "body": "{\"query\":\"{stops(name:\\\"Kamppi\\\"){gtfsId code name lat lon}}\"}", "ran": false, "fields": "data.stops[].gtfsId|code|name|lat|lon"},
+        "linesAtStop": {"exampleURL": "https://api.digitransit.fi/routing/v2/hsl/gtfs/v1", "method": "POST", "body": "{\"query\":\"{stop(id:\\\"HSL:1040602\\\"){routes{gtfsId shortName longName mode}}}\"}", "ran": false, "fields": "data.stop.routes[]"},
+        "routePattern": {"exampleURL": "https://api.digitransit.fi/routing/v2/hsl/gtfs/v1", "method": "POST", "body": "{\"query\":\"{route(id:\\\"HSL:1055\\\"){patterns{code directionId headsign stops{gtfsId code name lat lon}}}}\"}", "ran": false, "fields": "data.route.patterns[].stops[] ordered"},
+        "vehicles": {"exampleURL": "wss://mqtt.hsl.fi:443/", "method": "MQTT", "body": "subscribe /hfp/v2/journey/ongoing/vp/bus/+/+/1055/# (no credentials; also mqtts://mqtt.hsl.fi:8883)", "ran": true, "fields": "payload.VP.lat|long|tsi|tst|hdg|spd|route|dir|veh|stop|dl (age <= 13 s, ~1 msg/s/vehicle)"},
+        "arrivals": {"exampleURL": "https://api.digitransit.fi/routing/v2/hsl/gtfs/v1", "method": "POST", "body": "{\"query\":\"{stop(id:\\\"HSL:1040602\\\"){stoptimesWithoutPatterns(numberOfDepartures:10){scheduledArrival realtimeArrival realtime trip{route{gtfsId}}}}}\"}", "ran": false, "fields": "data.stop.stoptimesWithoutPatterns[]"},
+        "stopsNearby": {"exampleURL": "https://api.digitransit.fi/routing/v2/hsl/gtfs/v1", "method": "POST", "body": "{\"query\":\"{stopsByRadius(lat:60.17,lon:24.93,radius:300){edges{node{stop{gtfsId name lat lon} distance}}}}\"}", "ran": false, "fields": "data.stopsByRadius.edges[]"}
+      },
+      "fit": "FULL",
+      "rateLimit": "routing: keep < 10 req/s, per-key quota enforced (numbers not public); MQTT: none",
+      "attribution": "Data: HSL / Digitransit (CC BY 4.0)",
+      "notes": "Needs an MQTT client (e.g. CocoaMQTT). Waltti/finland routers are ARRIVALS-ONLY (no keyless VM)."
+    },
+    {
+      "providerId": "wienerlinien",
+      "countries": ["AT"], "cities": ["Vienna"],
+      "baseURL": "https://www.wienerlinien.at/ogd_realtime",
+      "auth": "none", "keySignupURL": null,
+      "wave": 1, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://www.wienerlinien.at/ogd_realtime/doku/ogd/wienerlinien-ogd-haltepunkte.csv", "ran": true, "fields": "StopID (rbl code);DIVA;StopText;Municipality;MunicipalityID;Longitude;Latitude (338 KB, cache)"},
+        "linesAtStop": {"exampleURL": "https://www.wienerlinien.at/ogd_realtime/doku/ogd/wienerlinien-ogd-fahrwegverlaeufe.csv", "ran": true, "fields": "LineID;PatternID;StopSeqCount;StopID;Direction (1.5 MB) + wienerlinien-ogd-linien.csv LineID;LineText;Realtime;MeansOfTransport"},
+        "routePattern": {"exampleURL": "https://www.wienerlinien.at/ogd_realtime/doku/ogd/wienerlinien-ogd-fahrwegverlaeufe.csv", "ran": true, "fields": "rows for LineID+PatternID ordered by StopSeqCount"},
+        "vehicles": {"exampleURL": null, "ran": false, "fields": "not available"},
+        "arrivals": {"exampleURL": "https://www.wienerlinien.at/ogd_realtime/monitor?stopId=252&activateTrafficInfo=stoerunglang", "ran": true, "fields": "data.monitors[].lines[].name|towards|direction|lineId|realtimeSupported, departures.departure[].departureTime.timePlanned|timeReal|countdown; locationStop.geometry.coordinates"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side from haltepunkte.csv"}
+      },
+      "fit": "ARRIVALS-ONLY",
+      "rateLimit": "fair use: poll interval >= 15 s, only needed stops; IP block on abuse",
+      "attribution": "Datenquelle: Stadt Wien – data.wien.gv.at / Wiener Linien (CC BY 4.0)",
+      "notes": "monitor accepts stopId=, rbl= (multiple), diva=."
+    },
+    {
+      "providerId": "efa-bw",
+      "countries": ["DE"], "cities": ["Stuttgart", "Karlsruhe", "Freiburg", "Mannheim/Heidelberg", "Ulm"],
+      "baseURL": "https://www.efa-bw.de/nvbw",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://www.efa-bw.de/nvbw/XML_STOPFINDER_REQUEST?outputFormat=rapidJSON&type_sf=any&name_sf=Stuttgart%20Charlottenplatz&coordOutputFormat=WGS84%5Bdd.ddddd%5D", "ran": true, "fields": "locations[].id (DHID)|name|disassembledName|coord[lat,lon]|parent.name"},
+        "linesAtStop": {"exampleURL": "https://www.efa-bw.de/nvbw/XML_SERVINGLINES_REQUEST?outputFormat=rapidJSON&type_sl=stop&name_sl=de:08111:6118&mode=odv", "ran": true, "fields": "lines[].id|number|name|product.name|operator.name|destination.name"},
+        "routePattern": {"exampleURL": "https://www.efa-bw.de/nvbw/XML_STOPSEQCOORD_REQUEST?outputFormat=rapidJSON&line=vvs%3A30044%3A%20%3AH%3Aj26&tripCode=1114&stopID=de:08111:6075&date=20260922&time=1048&coordOutputFormat=WGS84%5Bdd.ddddd%5D", "ran": true, "fields": "leg.stopSequence[].id|name|coord|departureTimePlanned|departureTimeEstimated (per trip; line+tripCode from DM stopEvents[].transportation; date/time must be current)"},
+        "vehicles": {"exampleURL": null, "ran": false, "fields": "not available"},
+        "arrivals": {"exampleURL": "https://www.efa-bw.de/nvbw/XML_DM_REQUEST?outputFormat=rapidJSON&type_dm=stop&name_dm=de:08111:6075&mode=direct&useRealtime=1&limit=4&coordOutputFormat=WGS84%5Bdd.ddddd%5D", "ran": true, "fields": "stopEvents[].departureTimePlanned|departureTimeEstimated|isRealtimeControlled, transportation.number|destination.name|id|properties.tripCode, location.id"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "XML_COORD_REQUEST (not run)"}
+      },
+      "fit": "ARRIVALS-ONLY",
+      "rateLimit": "none published (web-app backend)",
+      "attribution": "Data: NVBW / DELFI (CC BY 4.0)",
+      "notes": "Same EFA rapidJSON dialect verified at https://efa.vrr.de/vrr (NRW) and https://www.linzag.at/linz2/efaAPI (Linz); TfNSW uses it too (with key). No ToS for direct use."
+    },
+    {
+      "providerId": "transport-opendata-ch",
+      "countries": ["CH"], "cities": ["Zürich", "Bern", "Basel", "Geneva", "Lausanne"],
+      "baseURL": "https://transport.opendata.ch/v1",
+      "auth": "none", "keySignupURL": null,
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://transport.opendata.ch/v1/locations?query=Bellevue&type=station", "ran": true, "fields": "stations[].id|name|coordinate.x (lat)|coordinate.y (lon)|icon"},
+        "linesAtStop": {"exampleURL": "https://transport.opendata.ch/v1/stationboard?station=8576193&limit=5&transportations%5B%5D=bus", "ran": true, "fields": "stationboard[].number|category|to|operator (derived)"},
+        "routePattern": {"exampleURL": "https://transport.opendata.ch/v1/stationboard?station=8576193&limit=5&transportations%5B%5D=bus", "ran": true, "fields": "stationboard[].passList[].station.id|name|coordinate, arrival|departure (per trip, onward stops)"},
+        "vehicles": {"exampleURL": null, "ran": false, "fields": "not available"},
+        "arrivals": {"exampleURL": "https://transport.opendata.ch/v1/stationboard?station=8576193&limit=5&transportations%5B%5D=bus", "ran": true, "fields": "stationboard[].stop.departure|departureTimestamp|delay|prognosis.departure"},
+        "stopsNearby": {"exampleURL": "https://transport.opendata.ch/v1/locations?x=47.367&y=8.545&type=station", "ran": false, "fields": "stations[].distance"}
+      },
+      "fit": "ARRIVALS-ONLY",
+      "rateLimit": "constrained by timetable.search.ch (historically ~1000 req/day/IP)",
+      "attribution": "Powered by Opendata.ch Transport API / search.ch",
+      "notes": "No published licence; donation-supported community service. search.ch/timetable/api/stationboard.json also keyless."
+    },
+    {
+      "providerId": "sl-transport",
+      "countries": ["SE"], "cities": ["Stockholm"],
+      "baseURL": "https://transport.integration.sl.se/v1",
+      "auth": "none", "keySignupURL": "https://www.trafiklab.se/",
+      "wave": 3, "verified": "V",
+      "endpoints": {
+        "searchStops": {"exampleURL": "https://transport.integration.sl.se/v1/sites?expand=true", "ran": true, "fields": "[].id|name|lat|lon|stop_areas[] (1.6 MB, cache; no name filter)"},
+        "linesAtStop": {"exampleURL": "https://transport.integration.sl.se/v1/sites/9192/departures?transport=BUS&forecast=30", "ran": true, "fields": "departures[].line.id|designation|transport_mode (derived)"},
+        "routePattern": {"exampleURL": null, "ran": false, "fields": "NOT AVAILABLE keyless (journeys/{id} -> 404); Trafiklab ResRobot journeyDetail?id=...&accessId=KEY -> Stop[].extId|name|lat|lon|routeIdx"},
+        "vehicles": {"exampleURL": "https://opendata.samtrafiken.se/gtfs-rt/sl/VehiclePositions.pb?key=KEY", "ran": false, "fields": "Trafiklab GTFS-RT (free key; Bronze 30k/month per key); whole operator, filter by trip.route_id"},
+        "arrivals": {"exampleURL": "https://transport.integration.sl.se/v1/sites/9192/departures?transport=BUS&line=474&forecast=60", "ran": true, "fields": "departures[].scheduled|expected|state|display|destination|direction_code, stop_point.id|designation, line.id|designation, journey.id (local time, no offset)"},
+        "stopsNearby": {"exampleURL": null, "ran": false, "fields": "client-side from /v1/sites"}
+      },
+      "fit": "ARRIVALS-ONLY",
+      "rateLimit": "unspecified ('no excessive requests'); Trafiklab keyed tiers 30k/month Bronze, 2M/month Silver on request",
+      "attribution": "Data: SL / Trafiklab (CC0)",
+      "notes": "FULL only with a Trafiklab key; Trafiklab support said hardcoding a key in a mobile app is OK, but the quota is per key."
+    },
+    {
+      "providerId": "kr-seoul-topis",
+      "countries": ["KR"], "cities": ["Seoul"],
+      "baseURL": "http://ws.bus.go.kr/api/rest/",
+      "auth": "free-key", "keySignupURL": "https://www.data.go.kr/data/15000314/openapi.do",
+      "wave": 4, "verified": "docs (keyless -> 401 verified)",
+      "endpoints": {
+        "searchStops": {"exampleURL": "http://ws.bus.go.kr/api/rest/stationinfo/getStationByName?serviceKey=KEY&stSrch=%EA%B0%95%EB%82%A8%EC%97%AD&resultType=json", "ran": false, "fields": "msgBody.itemList[].stId|stNm|arsId (5-digit code)|tmX (lon)|tmY (lat); by code: stationinfo/getStationByUid?arsId="},
+        "linesAtStop": {"exampleURL": "http://ws.bus.go.kr/api/rest/stationinfo/getRouteByStation?serviceKey=KEY&arsId=23285&resultType=json", "ran": false, "fields": "itemList[].busRouteId|busRouteNm|busRouteAbrv"},
+        "routePattern": {"exampleURL": "http://ws.bus.go.kr/api/rest/busRouteInfo/getStaionByRoute?serviceKey=KEY&busRouteId=100100118&resultType=json", "ran": false, "fields": "itemList[].seq|station|stationNm|arsId|gpsX|gpsY|direction"},
+        "vehicles": {"exampleURL": "http://ws.bus.go.kr/api/rest/buspos/getBusPosByRtid?serviceKey=KEY&busRouteId=100100118&resultType=json", "ran": false, "fields": "itemList[].vehId|plainNo|tmX|tmY|posX|posY|dataTm|sectOrd|stopFlag|congetion"},
+        "arrivals": {"exampleURL": "http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey=KEY&stId=121000212&busRouteId=100100118&ord=10&resultType=json", "ran": false, "fields": "itemList[].arrmsg1|arrmsg2|exps1 (s)|exps2|plainNo1|sectOrd1|isArrive1"},
+        "stopsNearby": {"exampleURL": "http://ws.bus.go.kr/api/rest/stationinfo/getStationByPos?serviceKey=KEY&tmX=127.02&tmY=37.49&radius=300&resultType=json", "ran": false, "fields": "itemList[].stationId|stationNm|arsId|gpsX|gpsY|dist"}
+      },
+      "fit": "FULL",
+      "rateLimit": "dev account 1,000 calls/day per service; ops account on use-case registration",
+      "attribution": "공공누리 제1유형 (KOGL Type 1): 서울특별시 / 공공데이터포털",
+      "notes": "HTTP only (ATS exception). Sibling services: TAGO national https://apis.data.go.kr/1613000/ (~50 cities, 10k/day dev), GBIS Gyeonggi https://apis.data.go.kr/6410000/ v2."
+    }
+  ]
+}

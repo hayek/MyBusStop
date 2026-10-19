@@ -1,0 +1,77 @@
+{
+  "features" : [
+    "refractivity",
+    "specular-location"
+  ],
+  "fill" : {
+    "linear-gradient" : [
+      "extended-gray:1.00000,1.00000",
+      "extended-gray:1.00000,1.00000"
+    ]
+  },
+  "groups" : [
+    {
+      "blur-material" : null,
+      "hidden" : false,
+      "layers" : [
+        {
+          "image-name" : "5-station-stroke.svg",
+          "name" : "5-station-stroke",
+          "opacity" : 1
+        },
+        {
+          "image-name" : "4-station-fill.svg",
+          "name" : "4-station-fill",
+          "opacity" : 0.95
+        }
+      ],
+      "lighting" : "individual",
+      "refractivity" : {
+        "depth" : 0.123984375,
+        "enabled" : true,
+        "strength" : 0.6238671875
+      },
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.5
+      },
+      "specular" : "inside",
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.3
+      }
+    },
+    {
+      "blur-material" : 0.5,
+      "hidden" : false,
+      "layers" : [
+        {
+          "image-name" : "3-line-teal.svg",
+          "name" : "3-line-teal"
+        },
+        {
+          "image-name" : "2-line-amber.svg",
+          "name" : "2-line-amber"
+        },
+        {
+          "image-name" : "1-line-red.svg",
+          "name" : "1-line-red"
+        }
+      ],
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.6
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.3
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
