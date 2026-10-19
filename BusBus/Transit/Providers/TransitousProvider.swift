@@ -209,6 +209,13 @@ nonisolated struct TransitousProvider: TransitProvider {
         }
     }
 
+    /// "BusBus-iOS/1.0 (+https://github.com/hayek/MyBusStop)": the version is the app's own, and the
+    /// link is the open-source repository, where its authors can be reached.
+    static let userAgent: String = {
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"
+        return "BusBus-iOS/\(version) (+https://github.com/hayek/MyBusStop)"
+    }()
+
     private func get<T: Decodable>(_ type: T.Type, _ path: String, _ query: [String: String]) async throws -> T {
         guard var components = URLComponents(string: base + path) else { throw TransitError.badResponse("invalid URL \(path)") }
         components.queryItems = query.sorted { $0.key < $1.key }.map { URLQueryItem(name: $0.key, value: $0.value) }
@@ -216,7 +223,7 @@ nonisolated struct TransitousProvider: TransitProvider {
         var request = URLRequest(url: url, timeoutInterval: 30)
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         // The policy asks for the app's name, version and a way to reach its authors.
-        request.setValue("BusBus-iOS/1.0 (+https://github.com/hayek/BusBus)", forHTTPHeaderField: "User-Agent")
+        request.setValue(Self.userAgent, forHTTPHeaderField: "User-Agent")
         // Through HTTPClient: the nearby box says where the rider is, and must not be cached.
         let (data, response) = try await HTTPClient.data(for: request, on: session)
         try HTTPClient.check(data, response, request, path)
